@@ -529,15 +529,15 @@
             top: auto;
             left: 50%;
             transform: translateX(-50%) translateY(10px);
-            width: calc(100% - 80px);
-            max-width: 1200px;
+            width: calc(100% - 48px);
+            max-width: 1400px;
             background: white;
             border-radius: 20px;
             box-shadow: var(--shadow-xl);
             opacity: 0;
             visibility: hidden;
             transition: all 0.25s ease;
-            padding: 32px;
+            padding: 32px 40px;
             z-index: 900;
             text-align: left;
             border: 1px solid var(--border-color);
@@ -549,7 +549,8 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        .mega-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+        .mega-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+        .mega-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
         .mega-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 
         .col-header {
@@ -2725,9 +2726,19 @@
             .btn-apply-nav { padding: 8px 16px; font-size: 13px; }
             .login-input { width: 120px; padding: 8px 12px; }
             .btn-login { padding: 8px 18px; }
+            .mega-menu-wrapper { max-width: 1300px; padding: 28px 32px; }
+            .mega-grid-5 { gap: 20px; }
+            .col-header { font-size: 12px; }
+            .menu-list li a { font-size: 13px; }
         }
 
         @media (max-width: 1200px) {
+            .mega-menu-wrapper { width: calc(100% - 40px); padding: 24px; }
+            .mega-grid-5 { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .mega-grid-5 .promo-box { grid-column: span 3; }
+            .mega-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .mega-grid-4 .promo-box { grid-column: span 2; }
+            .mega-grid-3 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
             .rates-tabs-container { gap: 8px; }
             .rate-tab { min-width: 90px; padding: 16px 18px; flex: 1; max-width: none; }
             .stats-container { flex-direction: column; gap: 48px; }
@@ -2740,10 +2751,6 @@
             .map-sidebar { max-height: 200px; display: flex; flex-wrap: wrap; gap: 8px; padding: 16px; }
             .map-sidebar h4 { width: 100%; margin-bottom: 8px; }
             .location-item { flex: 0 0 auto; margin-bottom: 0; }
-            .mega-menu-wrapper { width: calc(100% - 48px); padding: 24px; }
-            .mega-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-            .mega-grid-3 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-            .promo-box { grid-column: span 2; }
             
             /* Header adjustments for this breakpoint */
             .header-top-row { padding: 10px 0 10px 20px; }
@@ -3349,11 +3356,11 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Bank <i class="fas fa-chevron-down"></i></a>
                                 <div class="mega-menu-wrapper">
-                                    <div class="mega-grid-4">
+                                    <div class="mega-grid-5">
                                         <div>
                                             <h4 class="col-header">Checking & Savings</h4>
                                             <ul class="menu-list">
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-check-circle"></i></span> Cash Back Checking Accounts</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-check-circle"></i></span> Cash Back Checking</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-user-graduate"></i></span> Teen Checking</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-piggy-bank"></i></span> Savings Accounts</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-child"></i></span> High Five Youth Savings</a></li>
@@ -3373,7 +3380,9 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-user-graduate"></i></span> Teen Checking</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-child"></i></span> High Five Youth Savings</a></li>
                                             </ul>
-                                            <h4 class="col-header" style="margin-top: 20px;">Business Banking</h4>
+                                        </div>
+                                        <div>
+                                            <h4 class="col-header">Business Banking</h4>
                                             <ul class="menu-list">
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-briefcase"></i></span> Business Bank Accounts</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-cash-register"></i></span> Merchant Services</a></li>
@@ -3393,12 +3402,12 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Borrow <i class="fas fa-chevron-down"></i></a>
                                 <div class="mega-menu-wrapper">
-                                    <div class="mega-grid-4">
+                                    <div class="mega-grid-5">
                                         <div>
                                             <h4 class="col-header">Vehicle Loans</h4>
                                             <ul class="menu-list">
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-car"></i></span> New & Used Cars</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-sync-alt"></i></span> Refinance Existing Auto Loans</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-sync-alt"></i></span> Refinance Auto Loans</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-file-signature"></i></span> Lease Buy Outs</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-ship"></i></span> Boat, Motorcycle, & RV</a></li>
                                             </ul>
@@ -3419,7 +3428,9 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-graduation-cap"></i></span> Student Loans</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-shield-alt"></i></span> Overdraft Protection</a></li>
                                             </ul>
-                                            <h4 class="col-header" style="margin-top: 20px;">Commercial Lending</h4>
+                                        </div>
+                                        <div>
+                                            <h4 class="col-header">Commercial Lending</h4>
                                             <ul class="menu-list">
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-city"></i></span> Commercial Real Estate</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-chart-line"></i></span> Business Lending</a></li>
@@ -3439,13 +3450,15 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Insure & Invest <i class="fas fa-chevron-down"></i></a>
                                 <div class="mega-menu-wrapper">
-                                    <div class="mega-grid-4">
+                                    <div class="mega-grid-5">
                                         <div>
-                                            <h4 class="col-header">Retirement & Financial Planning</h4>
+                                            <h4 class="col-header">Retirement & Planning</h4>
                                             <ul class="menu-list">
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-chart-pie"></i></span> Island Financial Services</a></li>
                                             </ul>
-                                            <h4 class="col-header" style="margin-top: 20px;">Life Insurance</h4>
+                                        </div>
+                                        <div>
+                                            <h4 class="col-header">Life Insurance</h4>
                                             <ul class="menu-list">
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-heart"></i></span> Life Insurance</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-user-shield"></i></span> ID Theft & More</a></li>
@@ -3481,7 +3494,7 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Learn <i class="fas fa-chevron-down"></i></a>
                                 <div class="mega-menu-wrapper">
-                                    <div class="mega-grid-4">
+                                    <div class="mega-grid-5">
                                         <div>
                                             <h4 class="col-header">Member Perks</h4>
                                             <ul class="menu-list">
@@ -3490,7 +3503,7 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-chart-line"></i></span> Credit Monitoring</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-laptop"></i></span> Online Banking</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-mobile-alt"></i></span> Mobile Banking</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Courtesy Banking Locations & ATM's</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Courtesy Banking & ATM's</a></li>
                                             </ul>
                                         </div>
                                         <div>
@@ -3515,23 +3528,20 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-book"></i></span> Annual Report</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-calendar"></i></span> Events</a></li>
                                             </ul>
-                                            <h4 class="col-header" style="margin-top: 20px;">Financial Education</h4>
-                                            <ul class="menu-list">
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-podcast"></i></span> Making Cents of Long Island Podcast</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-blog"></i></span> Financial Education Blog</a></li>
-                                            </ul>
                                         </div>
                                         <div>
-                                            <h4 class="col-header">Financial Calculators</h4>
+                                            <h4 class="col-header">Financial Education</h4>
                                             <ul class="menu-list">
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-podcast"></i></span> Making Cents Podcast</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-blog"></i></span> Financial Education Blog</a></li>
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-calculator"></i></span> Financial Calculators</a></li>
                                             </ul>
-                                            <div class="promo-box" style="margin-top: 20px;">
-                                                <div class="promo-box-icon"><i class="fas fa-graduation-cap"></i></div>
-                                                <h4 class="promo-title">Financial Wellness</h4>
-                                                <p class="promo-desc">Explore resources to help you reach your financial goals.</p>
-                                                <a href="#" class="promo-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                                            </div>
+                                        </div>
+                                        <div class="promo-box">
+                                            <div class="promo-box-icon"><i class="fas fa-graduation-cap"></i></div>
+                                            <h4 class="promo-title">Financial Wellness</h4>
+                                            <p class="promo-desc">Explore resources to help you reach your financial goals.</p>
+                                            <a href="#" class="promo-link">Learn More <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
