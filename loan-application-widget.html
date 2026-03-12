@@ -1,0 +1,689 @@
+<style>
+    .ifcu-loan-widget {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: #475569;
+        box-sizing: border-box;
+    }
+
+    .ifcu-loan-widget *,
+    .ifcu-loan-widget *::before,
+    .ifcu-loan-widget *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ifcu-loan-widget a {
+        text-decoration: none;
+    }
+
+    /* Hero Section */
+    .ifcu-hero {
+        background: linear-gradient(135deg, #1a4b8c 0%, #2563a8 50%, #3b82c4 100%);
+        padding: 50px 30px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .ifcu-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(59, 130, 196, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(74, 158, 255, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+        pointer-events: none;
+    }
+
+    .ifcu-hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+
+    .ifcu-hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .ifcu-hero h2 {
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+    }
+
+    .ifcu-hero-tagline {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .ifcu-hero-tagline span {
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .ifcu-hero-tagline .ifcu-divider {
+        width: 5px;
+        height: 5px;
+        background: #4a9eff;
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+
+    .ifcu-hero-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0 auto 24px;
+        line-height: 1.7;
+    }
+
+    .ifcu-hero-notice {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #ffffff;
+        font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 12px 24px;
+        border-radius: 100px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .ifcu-hero-notice svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    /* Loan Grid Section */
+    .ifcu-loan-content {
+        padding: 40px 24px;
+        background: transparent;
+    }
+
+    .ifcu-section-header {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .ifcu-section-label {
+        display: inline-block;
+        color: #2d7dd2;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+    }
+
+    .ifcu-section-header h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+    }
+
+    .ifcu-section-header p {
+        color: #475569;
+        max-width: 450px;
+        margin: 0 auto;
+        font-size: 0.95rem;
+    }
+
+    /* Loan Grid */
+    .ifcu-loan-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .ifcu-loan-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Loan Card */
+    .ifcu-loan-card {
+        background: #ffffff;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        transition: all 0.2s ease;
+    }
+
+    .ifcu-loan-card:hover {
+        border-color: #2d7dd2;
+        box-shadow: 0 8px 24px rgba(26, 75, 140, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .ifcu-card-header {
+        padding: 20px 20px 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .ifcu-card-icon {
+        width: 46px;
+        height: 46px;
+        background: linear-gradient(135deg, #1a4b8c 0%, #2d7dd2 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(26, 75, 140, 0.2);
+    }
+
+    .ifcu-card-icon svg {
+        width: 22px;
+        height: 22px;
+        color: #ffffff;
+    }
+
+    .ifcu-card-header h4 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0;
+    }
+
+    .ifcu-card-body {
+        padding: 6px 0;
+    }
+
+    .ifcu-loan-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        color: #475569;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+    }
+
+    .ifcu-loan-link:hover,
+    .ifcu-loan-link:focus {
+        background: #f0f7ff;
+        color: #1a4b8c;
+    }
+
+    .ifcu-loan-link-text {
+        font-weight: 500;
+    }
+
+    .ifcu-loan-link-arrow {
+        display: flex;
+        align-items: center;
+        color: #2d7dd2;
+        font-size: 0.8rem;
+        font-weight: 600;
+        gap: 4px;
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.2s ease;
+    }
+
+    .ifcu-loan-link-arrow svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .ifcu-loan-link:hover .ifcu-loan-link-arrow,
+    .ifcu-loan-link:focus .ifcu-loan-link-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Help Section */
+    .ifcu-help-section {
+        background: linear-gradient(135deg, #1a4b8c 0%, #2d7dd2 100%);
+        border-radius: 16px;
+        padding: 40px 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ifcu-help-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 0% 100%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .ifcu-help-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .ifcu-help-section h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+    }
+
+    .ifcu-help-section p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 24px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.95rem;
+    }
+
+    .ifcu-help-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .ifcu-help-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+    }
+
+    .ifcu-help-btn-primary {
+        background: #ffffff;
+        color: #1a4b8c;
+    }
+
+    .ifcu-help-btn-primary:hover,
+    .ifcu-help-btn-primary:focus {
+        background: #f0f7ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .ifcu-help-btn-secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .ifcu-help-btn-secondary:hover,
+    .ifcu-help-btn-secondary:focus {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .ifcu-help-btn svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        .ifcu-hero {
+            padding: 40px 20px 50px;
+        }
+
+        .ifcu-hero h2 {
+            font-size: 1.5rem;
+        }
+
+        .ifcu-hero-tagline {
+            gap: 10px;
+        }
+
+        .ifcu-hero-tagline span {
+            font-size: 0.9rem;
+        }
+
+        .ifcu-loan-content {
+            padding: 30px 16px;
+        }
+
+        .ifcu-card-header {
+            padding: 16px;
+        }
+
+        .ifcu-card-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .ifcu-card-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .ifcu-loan-link {
+            padding: 10px 16px;
+            font-size: 0.85rem;
+        }
+
+        .ifcu-help-section {
+            padding: 32px 20px;
+        }
+
+        .ifcu-help-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ifcu-help-btn {
+            width: 100%;
+            max-width: 260px;
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="ifcu-loan-widget">
+    <!-- Hero Section -->
+    <div class="ifcu-hero">
+        <div class="ifcu-hero-content">
+            <h2>Island Federal Online Loan Application Portal</h2>
+            <div class="ifcu-hero-tagline">
+                <span>Simple</span>
+                <div class="ifcu-divider"></div>
+                <span>Quick</span>
+                <div class="ifcu-divider"></div>
+                <span>Secure</span>
+            </div>
+            <p class="ifcu-hero-subtitle">
+                Welcome to our online loan application portal! Using the latest technologies, you can apply for a loan safely and quickly in a matter of minutes. To get started, select the loan type below and have your cell phone ready.
+            </p>
+            <div class="ifcu-hero-notice">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                Have your cell phone ready for verification
+            </div>
+        </div>
+    </div>
+
+    <!-- Loan Categories -->
+    <div class="ifcu-loan-content">
+        <div class="ifcu-section-header">
+            <span class="ifcu-section-label">Choose Your Loan Type</span>
+            <h3>What are you looking for?</h3>
+            <p>Select a category below to begin your application.</p>
+        </div>
+
+        <div class="ifcu-loan-grid">
+            <!-- Vehicle Loans -->
+            <div class="ifcu-loan-card">
+                <div class="ifcu-card-header">
+                    <div class="ifcu-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+                            <circle cx="7" cy="17" r="2"></circle>
+                            <circle cx="17" cy="17" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h4>Vehicle Loans</h4>
+                </div>
+                <div class="ifcu-card-body">
+                    <a href="https://apply.islandfcu.org/loans/apply/vehicle/car" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Purchase a New or Used Car</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/vehicle/car" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Refinance Your Current Auto Loan</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/vehicle/car" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Buyout Your Current Leased Vehicle</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/vehicle/motorcycle-powersport" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Motorcycles</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/vehicle/boat-or-marine-vehicle" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Boats</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/vehicle/recreational-vehicle" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">RV's</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Credit Cards & Personal Loans -->
+            <div class="ifcu-loan-card">
+                <div class="ifcu-card-header">
+                    <div class="ifcu-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h4>Credit Cards & Personal Loans</h4>
+                </div>
+                <div class="ifcu-card-body">
+                    <a href="https://apply.islandfcu.org/loans/apply/credit-card/island-mastercard" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a Credit Card</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/credit-card/secured-mastercard" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a Secured Credit Card</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/personal-line-of-credit/personal-line-of-credit" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for Overdraft Protection</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/personal" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a Personal Loan</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/personal/share-secured" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a Share or CD Secured Loan</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Home Equity Lending -->
+            <div class="ifcu-loan-card">
+                <div class="ifcu-card-header">
+                    <div class="ifcu-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h4>Home Equity Lending</h4>
+                </div>
+                <div class="ifcu-card-body">
+                    <a href="https://apply.islandfcu.org/loans/apply/home-equity-line-of-credit" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a Home Equity Line of Credit</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://apply.islandfcu.org/loans/apply/home-equity-line-of-credit" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a Home Equity Loan</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mortgages -->
+            <div class="ifcu-loan-card">
+                <div class="ifcu-card-header">
+                    <div class="ifcu-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"></path>
+                            <path d="M5 21V7l8-4v18"></path>
+                            <path d="M19 21V11l-6-4"></path>
+                            <path d="M9 9v.01"></path>
+                            <path d="M9 12v.01"></path>
+                            <path d="M9 15v.01"></path>
+                            <path d="M9 18v.01"></path>
+                        </svg>
+                    </div>
+                    <h4>Mortgages</h4>
+                </div>
+                <div class="ifcu-card-body">
+                    <a href="https://islandfcu.mhsite.loan/" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Apply for a New Mortgage</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://islandfcu.mhsite.loan/" class="ifcu-loan-link" target="_blank">
+                        <span class="ifcu-loan-link-text">Refinance Your Current Mortgage</span>
+                        <span class="ifcu-loan-link-arrow">
+                            Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="ifcu-help-section">
+        <div class="ifcu-help-content">
+            <h3>Need Help Choosing?</h3>
+            <p>Our friendly team is here to help you find the perfect loan for your needs.</p>
+            <div class="ifcu-help-buttons">
+                <a href="tel:631-851-1100" class="ifcu-help-btn ifcu-help-btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    Call 631-851-1100
+                </a>
+                <a href="https://islandfcu.org/contact-us/" class="ifcu-help-btn ifcu-help-btn-secondary" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Contact Us Online
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
