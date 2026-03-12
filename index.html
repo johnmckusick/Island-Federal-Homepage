@@ -2181,16 +2181,14 @@
         .promo-banner::after {
             content: '';
             position: absolute;
-            bottom: 24px;
-            right: 24px;
-            width: 120px;
-            height: 80px;
-            background-image: url('./images/island-wave-white.png');
+            inset: 0;
+            background-image: url('./images/wave-only-white.png');
             background-repeat: no-repeat;
-            background-size: contain;
-            background-position: bottom right;
-            opacity: 0.12;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
             pointer-events: none;
+            mix-blend-mode: lighten;
         }
 
         .promo-inner {
@@ -3065,7 +3063,6 @@
             
             /* Promo Banner CTA */
             .promo-banner { padding: 48px 0; }
-            .promo-banner::after { width: 80px; height: 54px; bottom: 16px; right: 16px; opacity: 0.1; }
             .promo-banner h2 { font-size: 28px; }
             .promo-banner p { font-size: 14px; max-width: 100%; }
             .promo-badge { font-size: 12px; }
@@ -3238,7 +3235,6 @@
             
             /* Promo Banner CTA */
             .promo-banner { padding: 40px 0; }
-            .promo-banner::after { width: 64px; height: 43px; bottom: 12px; right: 12px; }
             .promo-banner h2 { font-size: 24px; }
             .promo-banner p { font-size: 13px; }
             .promo-badge { font-size: 11px; padding: 6px 12px; }
