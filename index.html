@@ -1321,59 +1321,62 @@
             padding: 0;
         }
 
+        /* Sleek carousel nav: compact dots + pill for active (no heavy halos) */
         .hero-progress {
             display: flex;
-            gap: 14px;
+            gap: 10px;
             align-items: center;
             justify-content: flex-start;
             flex-shrink: 0;
             margin: 0;
-            padding: 0;
+            padding: 4px 0;
         }
 
         .hero-bullet {
-            width: 48px;
-            height: 48px;
+            min-width: 44px;
+            height: 44px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border: none;
             background: transparent;
             cursor: pointer;
-            padding: 0;
-            border-radius: 50%;
-            transition: transform 0.25s ease;
+            padding: 0 10px;
+            border-radius: 999px;
+            transition: opacity 0.2s ease;
         }
 
-        .hero-bullet:hover,
+        .hero-bullet:hover .hero-bullet-dot {
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .hero-bullet.is-active:hover .hero-bullet-dot {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         .hero-bullet:focus-visible {
-            transform: scale(1.06);
             outline: none;
-        }
-
-        .hero-bullet:focus-visible {
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 0 4px rgba(0, 103, 172, 0.5);
-            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
         }
 
         .hero-bullet-dot {
             display: block;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.38);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
-            transition: width 0.35s ease, height 0.35s ease, background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.32);
+            transition:
+                width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.35s ease,
+                opacity 0.25s ease;
         }
 
         .hero-bullet.is-active .hero-bullet-dot {
-            width: 14px;
-            height: 14px;
-            background: linear-gradient(145deg, #ffffff 0%, #b8e8ff 100%);
-            box-shadow:
-                0 0 0 2px rgba(77, 195, 255, 0.55),
-                0 0 22px rgba(77, 195, 255, 0.55),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            width: 26px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.95);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -3427,7 +3430,7 @@
             .hero-headline { font-size: 42px; }
             .hero-content { max-width: 100%; padding: 0; }
             .hero-description { font-size: 16px; }
-            .hero-progress { gap: 12px; }
+            .hero-progress { gap: 8px; }
             .hero-cta-group { flex-direction: column; align-items: flex-start; }
             .btn-primary, .btn-secondary { width: auto; min-width: 200px; justify-content: center; }
             
@@ -3583,7 +3586,7 @@
             .hero-headline { font-size: 34px; line-height: 1.2; }
             .hero-badge { font-size: 12px; padding: 6px 12px; }
             .hero-description { font-size: 15px; margin-bottom: 32px; max-width: 100%; }
-            .hero-progress { gap: 10px; }
+            .hero-progress { gap: 6px; }
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
@@ -3891,9 +3894,9 @@
             .hero-description { font-size: 14px; margin-bottom: 24px; }
             .hero-content { padding: 0; }
             .hero-cta-group { gap: 12px; }
-            .hero-bullet { width: 44px; height: 44px; }
-            .hero-bullet-dot { width: 8px; height: 8px; }
-            .hero-bullet.is-active .hero-bullet-dot { width: 12px; height: 12px; }
+            .hero-bullet { min-width: 40px; height: 40px; padding: 0 8px; }
+            .hero-bullet-dot { width: 5px; height: 5px; }
+            .hero-bullet.is-active .hero-bullet-dot { width: 22px; height: 5px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
             
             /* Quick Access Rates — keep horizontal scroll (inherit 768); tighten */
