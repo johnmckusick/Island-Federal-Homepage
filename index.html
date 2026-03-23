@@ -262,7 +262,7 @@
         .header-inner {
             display: flex;
             align-items: stretch;
-            min-height: 120px;
+            min-height: 0;
         }
 
         .logo-area {
@@ -284,69 +284,105 @@
             flex-direction: column;
         }
 
-        .header-top-row {
+        .header-utilities {
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            padding: 12px 0 12px 30px;
-            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            padding: 10px 0 10px 28px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
 
-        .login-strip {
-            display: flex;
+        .header-utilities .util-link,
+        .header-utilities .util-text {
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            font-size: 14px;
-        }
-
-        .login-label {
-            font-family: 'Inter Tight', sans-serif;
-            font-weight: 700;
-            color: var(--navy-text);
-            font-size: 15px;
-            letter-spacing: -0.01em;
-        }
-
-        .login-input {
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: 100px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            width: 140px;
-            color: var(--navy-text);
-            transition: all 0.2s;
-        }
-
-        .login-input::placeholder { color: var(--light-grey); }
-        .login-input:focus { outline: none; border-color: var(--secondary-blue); box-shadow: 0 0 0 3px rgba(0, 143, 212, 0.1); }
-
-        .btn-login {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 100px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .btn-login:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 103, 172, 0.3); }
-
-        .login-links {
-            display: flex;
             gap: 8px;
-            font-size: 14px;
-            color: var(--light-grey);
-            align-items: center;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 13px;
+            font-weight: 500;
         }
 
-        .login-links a { color: var(--grey-text); font-weight: 500; }
-        .login-links a:hover { color: var(--primary-blue); }
-        .login-links span { color: var(--border-color); }
+        .header-utilities .util-link:hover { color: white; }
+
+        .header-utilities .util-divider {
+            width: 1px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.25);
+            flex-shrink: 0;
+        }
+
+        .header-utilities .btn-top {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .header-utilities .btn-top:hover {
+            background-color: white;
+            color: var(--primary-blue);
+            border-color: white;
+        }
+
+        .header-utilities .search-wrapper {
+            width: 180px;
+            position: relative;
+        }
+
+        .header-utilities .search-input {
+            width: 100%;
+            padding: 8px 38px 8px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .header-utilities .search-input::placeholder { color: rgba(255, 255, 255, 0.55); }
+        .header-utilities .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.45);
+        }
+
+        .header-utilities .search-btn {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            color: var(--primary-blue);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-utilities .locations-dropdown > a {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 13px;
+        }
+
+        .header-utilities .locations-dropdown > a:hover { color: white; }
 
         .nav-row {
             display: flex;
@@ -386,23 +422,32 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .btn-rates {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: white;
-            color: var(--primary-blue);
-            padding: 10px 20px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 22px;
             border-radius: 100px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             transition: all 0.2s;
             border: 2px solid var(--primary-blue);
+            box-shadow: 0 2px 12px rgba(0, 103, 172, 0.35);
         }
 
-        .btn-rates:hover { background: var(--primary-blue); color: white; transform: translateY(-2px); }
+        .btn-rates:hover {
+            background: var(--secondary-blue);
+            border-color: var(--secondary-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 103, 172, 0.4);
+        }
         .btn-rates i { font-size: 12px; }
 
         .btn-apply-nav {
@@ -449,8 +494,186 @@
         }
 
         .rates-dropdown-wrapper:hover .btn-rates {
-            background: var(--primary-blue);
+            background: var(--secondary-blue);
+            border-color: var(--secondary-blue);
             color: white;
+        }
+
+        .btn-header-login {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--navy-text);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter Tight', sans-serif;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-header-login:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(10, 31, 68, 0.25);
+        }
+
+        /* Login slide-in panel (full viewport height) */
+        .login-panel-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1198;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none;
+        }
+
+        .login-panel-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .login-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            height: 100dvh;
+            background: #fff;
+            z-index: 1199;
+            box-shadow: -12px 0 48px rgba(0, 0, 0, 0.18);
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .login-panel.active {
+            transform: translateX(0);
+        }
+
+        .login-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--light-bg);
+        }
+
+        .login-panel-header h3 {
+            font-family: 'Inter Tight', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--navy-text);
+        }
+
+        .login-panel-close {
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--grey-text);
+            cursor: pointer;
+            padding: 8px;
+            line-height: 1;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .login-panel-close:hover {
+            background: var(--border-color);
+            color: var(--navy-text);
+        }
+
+        .login-panel-body {
+            padding: 28px;
+            flex: 1;
+        }
+
+        .login-panel-body p.intro {
+            font-size: 14px;
+            color: var(--grey-text);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .login-panel-form label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy-text);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+
+        .login-panel-form input[type="text"],
+        .login-panel-form input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 20px;
+            background: var(--input-bg);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .login-panel-form input:focus {
+            outline: none;
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 143, 212, 0.15);
+        }
+
+        .login-panel-submit {
+            width: 100%;
+            padding: 16px;
+            border-radius: 100px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            font-family: 'Inter Tight', sans-serif;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .login-panel-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 103, 172, 0.35);
+        }
+
+        .login-panel-links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .login-panel-links a {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .login-panel-links a:hover {
+            text-decoration: underline;
         }
 
         .rates-dropdown h4 {
@@ -551,7 +774,9 @@
 
         .mega-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
         .mega-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-        .mega-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .mega-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .mega-menu-locations { max-width: 1080px; margin-left: auto; margin-right: auto; }
+        .mega-menu-locations .mega-grid-3 { gap: 28px; }
 
         .col-header {
             font-family: 'Inter Tight', sans-serif;
@@ -662,8 +887,9 @@
 
         .promo-link:hover { gap: 10px; color: white; }
 
-        /* --- PROMO CAROUSEL BANNER --- */
+        /* --- PROMO CAROUSEL BANNER (hidden for now — re-enable by removing display:none) --- */
         .promo-carousel-banner {
+            display: none;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             position: relative;
             overflow: hidden;
@@ -2466,6 +2692,8 @@
             font-size: 13px;
             border: 1.5px solid var(--primary-blue);
             transition: all 0.2s;
+            cursor: pointer;
+            font-family: inherit;
         }
 
         .mobile-btn-login:hover {
@@ -2702,8 +2930,9 @@
             .nav-link { padding: 16px 10px; font-size: 16px; }
             .btn-rates { padding: 8px 16px; font-size: 13px; }
             .btn-apply-nav { padding: 8px 16px; font-size: 13px; }
-            .login-input { width: 120px; padding: 8px 12px; }
-            .btn-login { padding: 8px 18px; }
+            .btn-header-login { padding: 10px 22px; font-size: 15px; }
+            .header-utilities { gap: 10px 14px; padding: 8px 0 8px 20px; }
+            .header-utilities .search-wrapper { width: 150px; }
             .mega-menu-wrapper { max-width: 1300px; padding: 28px 32px; }
             .mega-grid-5 { gap: 20px; }
             .col-header { font-size: 12px; }
@@ -2731,10 +2960,7 @@
             .location-item { flex: 0 0 auto; margin-bottom: 0; }
             
             /* Header adjustments for this breakpoint */
-            .header-top-row { padding: 10px 0 10px 20px; }
-            .login-strip { gap: 8px; }
-            .login-label { display: none; }
-            .login-links { display: none; }
+            .header-utilities { padding: 8px 0 8px 16px; }
             .nav-row { padding: 0 0 0 20px; }
             .nav-menu { gap: 4px; }
             .nav-quick-actions { gap: 8px; }
@@ -2742,7 +2968,6 @@
 
         @media (max-width: 1080px) {
             /* Switch to mobile nav at this breakpoint */
-            .top-bar { display: none; }
             .mobile-header-actions { display: flex; }
             .mobile-menu-toggle { display: block; }
             .mobile-nav-panel { display: block; }
@@ -2765,7 +2990,6 @@
             .nav-quick-actions { display: none; }
             .nav-menu { display: none; }
             .nav-row { display: none; }
-            .header-top-row { display: none; }
         }
 
         @media (max-width: 992px) {
@@ -3257,42 +3481,7 @@
 </head>
 <body>
 
-    <!-- TOP UTILITY BAR -->
-    <div class="top-bar">
-        <div class="container-wide top-bar-inner">
-            <div class="top-left">
-                <span><i class="fas fa-university"></i> Routing: 221475896</span>
-                <div class="divider"></div>
-                <div class="locations-dropdown">
-                    <a href="#"><i class="fas fa-map-marker-alt"></i> Find a Branch <i class="fas fa-chevron-down"></i></a>
-                    <div class="locations-menu">
-                        <a href="#map-section" class="atm-locator"><i class="fas fa-search-location"></i> ATM & Branch Locator</a>
-                        <a href="#"><i class="fas fa-building"></i> Bellmore</a>
-                        <a href="#"><i class="fas fa-building"></i> Brooklyn</a>
-                        <a href="#"><i class="fas fa-building"></i> East Setauket</a>
-                        <a href="#"><i class="fas fa-building"></i> Hauppauge (Main Office)</a>
-                        <a href="#"><i class="fas fa-building"></i> Hicksville</a>
-                        <a href="#"><i class="fas fa-building"></i> Massapequa</a>
-                        <a href="#"><i class="fas fa-building"></i> Riverhead</a>
-                        <a href="#"><i class="fas fa-building"></i> Sayville</a>
-                        <a href="#"><i class="fas fa-building"></i> Selden</a>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <a href="tel:631-851-1100"><i class="fas fa-phone-alt"></i> 631-851-1100</a>
-            </div>
-            <div class="top-right">
-                <a href="#" class="btn-top">Open an Account <i class="fas fa-arrow-right"></i></a>
-                <a href="#" class="btn-top">Apply for a Loan <i class="fas fa-arrow-right"></i></a>
-                <div class="search-wrapper">
-                    <input type="text" class="search-input" placeholder="Search...">
-                    <button class="search-btn"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN HEADER -->
+    <!-- MAIN HEADER (two rows: utilities + nav; login via slide-in panel) -->
     <header class="main-header" id="mainHeader">
         <div class="container-wide">
             <div class="header-inner">
@@ -3304,7 +3493,7 @@
 
                 <!-- Mobile Header Actions -->
                 <div class="mobile-header-actions">
-                    <a href="#" class="mobile-btn-login"><i class="fas fa-user"></i> Login</a>
+                    <button type="button" class="mobile-btn-login" id="mobileLoginOpen" aria-label="Open login"><i class="fas fa-user"></i> Login</button>
                     <a href="#" class="mobile-btn-apply">Apply</a>
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                         <span></span>
@@ -3314,17 +3503,31 @@
                 </div>
 
                 <div class="header-right">
-                    <div class="header-top-row">
-                        <div class="login-strip">
-                            <span class="login-label">Online Banking</span>
-                            <input type="text" class="login-input" placeholder="Username">
-                            <input type="password" class="login-input" placeholder="Password">
-                            <button class="btn-login">Login</button>
-                            <div class="login-links">
-                                <a href="#">Forgot Password?</a>
-                                <span>|</span>
-                                <a href="#">Sign Up</a>
+                    <div class="header-utilities">
+                        <a href="tel:631-851-1100" class="util-link"><i class="fas fa-phone-alt"></i> Contact Us</a>
+                        <span class="util-divider"></span>
+                        <span class="util-text"><i class="fas fa-university"></i> Routing: 221475896</span>
+                        <span class="util-divider"></span>
+                        <div class="locations-dropdown">
+                            <a href="#"><i class="fas fa-map-marker-alt"></i> Find a Branch <i class="fas fa-chevron-down"></i></a>
+                            <div class="locations-menu">
+                                <a href="#map-section" class="atm-locator"><i class="fas fa-search-location"></i> ATM & Branch Locator</a>
+                                <a href="#"><i class="fas fa-building"></i> Bellmore</a>
+                                <a href="#"><i class="fas fa-building"></i> Brooklyn</a>
+                                <a href="#"><i class="fas fa-building"></i> East Setauket</a>
+                                <a href="#"><i class="fas fa-building"></i> Hauppauge (Main Office)</a>
+                                <a href="#"><i class="fas fa-building"></i> Hicksville</a>
+                                <a href="#"><i class="fas fa-building"></i> Massapequa</a>
+                                <a href="#"><i class="fas fa-building"></i> Riverhead</a>
+                                <a href="#"><i class="fas fa-building"></i> Sayville</a>
+                                <a href="#"><i class="fas fa-building"></i> Selden</a>
                             </div>
+                        </div>
+                        <a href="#" class="btn-top">Open an Account <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-top">Apply for a Loan <i class="fas fa-arrow-right"></i></a>
+                        <div class="search-wrapper">
+                            <input type="text" class="search-input" placeholder="Search..." aria-label="Search">
+                            <button type="button" class="search-btn" aria-label="Submit search"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
 
@@ -3430,16 +3633,11 @@
                                 <div class="mega-menu-wrapper">
                                     <div class="mega-grid-5">
                                         <div>
-                                            <h4 class="col-header">Retirement & Planning</h4>
+                                            <h4 class="col-header">Home</h4>
                                             <ul class="menu-list">
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-chart-pie"></i></span> Island Financial Services</a></li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h4 class="col-header">Life Insurance</h4>
-                                            <ul class="menu-list">
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-heart"></i></span> Life Insurance</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-user-shield"></i></span> ID Theft & More</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-home"></i></span> Homeowners Insurance</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-building"></i></span> Renters</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-paw"></i></span> Pet Insurance</a></li>
                                             </ul>
                                         </div>
                                         <div>
@@ -3451,11 +3649,16 @@
                                             </ul>
                                         </div>
                                         <div>
-                                            <h4 class="col-header">Home</h4>
+                                            <h4 class="col-header">Life Insurance</h4>
                                             <ul class="menu-list">
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-home"></i></span> Homeowners Insurance</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-building"></i></span> Renters</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-paw"></i></span> Pet Insurance</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-heart"></i></span> Life Insurance</a></li>
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-user-shield"></i></span> ID Theft & More</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="col-header">Retirement & Planning</h4>
+                                            <ul class="menu-list">
+                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-chart-pie"></i></span> Island Financial Services</a></li>
                                             </ul>
                                         </div>
                                         <div class="promo-box">
@@ -3528,7 +3731,7 @@
                             <!-- LOCATIONS MENU -->
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Locations <i class="fas fa-chevron-down"></i></a>
-                                <div class="mega-menu-wrapper">
+                                <div class="mega-menu-wrapper mega-menu-locations">
                                     <div class="mega-grid-3">
                                         <div>
                                             <h4 class="col-header">Nassau County</h4>
@@ -3568,7 +3771,7 @@
 
                         <div class="nav-quick-actions">
                             <div class="rates-dropdown-wrapper">
-                                <a href="#" class="btn-rates"><i class="fas fa-chart-line"></i> View All Rates</a>
+                                <a href="#" class="btn-rates"><i class="fas fa-chart-line"></i> Rates</a>
                                 <div class="rates-dropdown">
                                     <h4>Deposit Rates</h4>
                                     <ul>
@@ -3586,12 +3789,36 @@
                                 </div>
                             </div>
                             <a href="#" class="btn-apply-nav"><i class="fas fa-paper-plane"></i> Apply Now</a>
+                            <button type="button" class="btn-header-login" id="loginPanelOpen" aria-expanded="false" aria-controls="loginPanel">Login</button>
                         </div>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Online banking login — slides in from right (full height) -->
+    <div class="login-panel-overlay" id="loginPanelOverlay" aria-hidden="true"></div>
+    <div class="login-panel" id="loginPanel" role="dialog" aria-modal="true" aria-labelledby="loginPanelTitle">
+        <div class="login-panel-header">
+            <h3 id="loginPanelTitle">Online Banking</h3>
+            <button type="button" class="login-panel-close" id="loginPanelClose" aria-label="Close login"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="login-panel-body">
+            <p class="intro">Sign in with your Island Federal online banking credentials. New users must enroll before first use.</p>
+            <form class="login-panel-form" id="loginPanelForm" action="#" novalidate>
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" name="username" placeholder="Username" autocomplete="username">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="password" placeholder="Password" autocomplete="current-password">
+                <button type="submit" class="login-panel-submit">Login</button>
+            </form>
+            <div class="login-panel-links">
+                <a href="https://online.islandfcu.com" target="_blank" rel="noopener noreferrer">Forgot Password?</a>
+                <a href="https://online.islandfcu.com" target="_blank" rel="noopener noreferrer">Enroll</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -3708,7 +3935,7 @@
                 <p class="hero-description">Built by the community, for the community. Enjoy better rates, lower fees, and people who know your name — not just your account number.</p>
                 <div class="hero-cta-group">
                     <a href="#" class="btn-primary">Open an Account <i class="fas fa-arrow-right"></i></a>
-                    <a href="#" class="btn-secondary"><i class="fas fa-chart-line"></i> View All Rates</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-chart-line"></i> Rates</a>
                 </div>
             </div>
         </div>
@@ -4527,6 +4754,60 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Login slide-in panel (desktop + mobile)
+        (function() {
+            const panel = document.getElementById('loginPanel');
+            const overlay = document.getElementById('loginPanelOverlay');
+            const openDesktop = document.getElementById('loginPanelOpen');
+            const openMobile = document.getElementById('mobileLoginOpen');
+            const closeBtn = document.getElementById('loginPanelClose');
+            const form = document.getElementById('loginPanelForm');
+            const headerLoginBtn = document.getElementById('loginPanelOpen');
+
+            function closeMobileMenuIfAny() {
+                const nav = document.getElementById('mobileNavPanel');
+                const toggle = document.getElementById('mobileMenuToggle');
+                const mo = document.getElementById('mobileMenuOverlay');
+                if (nav && nav.classList.contains('active')) {
+                    if (toggle) toggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    if (mo) mo.classList.remove('active');
+                }
+            }
+
+            function openLoginPanel() {
+                closeMobileMenuIfAny();
+                panel.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                overlay.setAttribute('aria-hidden', 'false');
+                if (headerLoginBtn) headerLoginBtn.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeLoginPanel() {
+                panel.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                overlay.setAttribute('aria-hidden', 'true');
+                if (headerLoginBtn) headerLoginBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            if (openDesktop) openDesktop.addEventListener('click', function(e) { e.preventDefault(); openLoginPanel(); });
+            if (openMobile) openMobile.addEventListener('click', function(e) { e.preventDefault(); openLoginPanel(); });
+            if (closeBtn) closeBtn.addEventListener('click', closeLoginPanel);
+            if (overlay) overlay.addEventListener('click', closeLoginPanel);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && panel.classList.contains('active')) closeLoginPanel();
+            });
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    window.open('https://online.islandfcu.com', '_blank', 'noopener,noreferrer');
+                    closeLoginPanel();
+                });
+            }
+        })();
+
         // Mobile Menu Functionality
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileNavPanel = document.getElementById('mobileNavPanel');
@@ -4731,13 +5012,15 @@
             }, { passive: true });
         })();
 
-        // Promo Carousel Banner - Infinite Loop
+        // Promo Carousel Banner - Infinite Loop (skipped when banner is hidden)
         (function() {
             const track = document.querySelector('.promo-carousel-track');
-            const dots = document.querySelectorAll('.promo-carousel-dot');
-            const originalSlides = document.querySelectorAll('.promo-slide');
             const prevBtn = document.querySelector('.promo-arrow-prev');
             const nextBtn = document.querySelector('.promo-arrow-next');
+            const originalSlides = document.querySelectorAll('.promo-slide');
+            if (!track || !prevBtn || !nextBtn || originalSlides.length === 0) return;
+
+            const dots = document.querySelectorAll('.promo-carousel-dot');
             const totalSlides = originalSlides.length;
             let currentIndex = 1;
             let isTransitioning = false;
