@@ -684,21 +684,39 @@
 
         .login-panel-links {
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
         }
 
-        .login-panel-links a {
+        .login-panel-links > a {
             color: var(--primary-blue);
             font-weight: 600;
             font-size: 15px;
         }
 
-        .login-panel-links a:hover {
+        .login-panel-links > a:hover {
+            text-decoration: underline;
+        }
+
+        .login-panel-enroll-teaser {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--grey-text);
+            line-height: 1.5;
+        }
+
+        .login-panel-enroll-teaser a {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-panel-enroll-teaser a:hover {
             text-decoration: underline;
         }
 
@@ -710,9 +728,9 @@
             margin-bottom: -28px;
             padding: 32px 28px calc(40px + env(safe-area-inset-bottom, 0px));
             background:
-                radial-gradient(120% 80% at 100% 0%, rgba(0, 143, 212, 0.14) 0%, transparent 55%),
-                linear-gradient(168deg, #e4f1fb 0%, #d0e7f8 45%, #b9daf3 100%);
-            border-top: 1px solid rgba(0, 103, 172, 0.14);
+                radial-gradient(120% 85% at 100% 0%, rgba(0, 103, 172, 0.045) 0%, transparent 58%),
+                linear-gradient(180deg, #fafcfe 0%, #f4f9fd 42%, #eef5fb 100%);
+            border-top: 1px solid rgba(0, 103, 172, 0.08);
             position: relative;
             overflow: hidden;
         }
@@ -723,9 +741,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue), var(--tertiary-blue, #5eb8e8));
-            opacity: 0.9;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 103, 172, 0.35), rgba(0, 143, 212, 0.45), rgba(0, 103, 172, 0.35));
             pointer-events: none;
         }
 
@@ -751,7 +768,7 @@
         .login-panel-enroll-title {
             font-family: 'Inter Tight', sans-serif;
             font-size: clamp(22px, 4.5vw, 26px);
-            font-weight: 700;
+            font-weight: 500;
             color: var(--navy-text);
             line-height: 1.22;
             margin: 0;
@@ -772,8 +789,8 @@
             align-items: flex-start;
             gap: 12px;
             font-size: 14px;
-            font-weight: 600;
-            line-height: 1.4;
+            font-weight: 400;
+            line-height: 1.45;
             color: var(--navy-text);
             margin: 0;
         }
@@ -3096,33 +3113,41 @@
         .mobile-login-section {
             padding: 24px;
             border-top: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #fafcfe 0%, #f3f8fc 100%);
         }
 
         .mobile-login-section h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
             color: var(--navy-text);
+            font-family: 'Inter Tight', sans-serif;
         }
 
-        .mobile-login-section input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
+        .mobile-login-section-desc {
+            margin: 0 0 16px 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--grey-text);
         }
 
-        .mobile-login-section button {
+        .mobile-login-section-open {
             width: 100%;
-            padding: 14px;
-            background: var(--primary-blue);
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
             border: none;
             border-radius: 100px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
+            font-family: 'Inter Tight', sans-serif;
             cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .mobile-login-section-open:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 103, 172, 0.35);
         }
 
         /* Responsive Breakpoints */
@@ -4010,6 +4035,7 @@
     </header>
 
     <!-- Online banking login — slides in from right (full height) -->
+    <!-- IFCU homepage deploy fingerprint: search View Source for "IFCU-deploy" to confirm latest build is live -->
     <div class="login-panel-overlay" id="loginPanelOverlay" aria-hidden="true"></div>
     <div class="login-panel" id="loginPanel" role="dialog" aria-modal="true" aria-labelledby="loginPanelTitle">
         <div class="login-panel-header">
@@ -4026,15 +4052,16 @@
             </form>
             <div class="login-panel-links">
                 <a href="https://online.islandfcu.com" target="_blank" rel="noopener noreferrer">Forgot password?</a>
+                <p class="login-panel-enroll-teaser">Don’t have an account? <a href="https://online.islandfcu.com" target="_blank" rel="noopener noreferrer">Enroll Now</a></p>
             </div>
             <div class="login-panel-enroll-promo" aria-label="Enroll in online banking">
                 <div class="login-panel-enroll-inner">
                     <p class="login-panel-enroll-kicker">Why Island Federal</p>
                     <h4 class="login-panel-enroll-title" id="loginPanelEnrollHeading">You’re more than an account number.</h4>
                     <ul class="login-panel-enroll-points" aria-label="Member benefits">
-                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Not-for-profit—we reinvest in <strong>you</strong>, not shareholders.</span></li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Not-for-profit—we reinvest in you, not shareholders.</span></li>
                         <li><i class="fas fa-check" aria-hidden="true"></i> <span>Strong rates &amp; fewer fees, built for Long Island.</span></li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Deposits federally insured by <strong>NCUA</strong>.</span></li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Deposits federally insured by NCUA.</span></li>
                     </ul>
                     <a href="https://online.islandfcu.com" target="_blank" rel="noopener noreferrer" class="login-panel-enroll-cta" aria-describedby="loginPanelEnrollHeading">Start enrollment <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
@@ -4144,10 +4171,9 @@
         </div>
 
         <div class="mobile-login-section">
-            <h4>Online Banking Login</h4>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button>Login</button>
+            <h4>Online Banking</h4>
+            <p class="mobile-login-section-desc">Tap below for the full experience—same as the Login button in the header (sign in, password help, enroll).</p>
+            <button type="button" class="mobile-login-section-open" data-open-login-panel>Open Online Banking</button>
         </div>
     </div>
 
@@ -5021,6 +5047,12 @@
 
             if (openDesktop) openDesktop.addEventListener('click', function(e) { e.preventDefault(); openLoginPanel(); });
             if (openMobile) openMobile.addEventListener('click', function(e) { e.preventDefault(); openLoginPanel(); });
+            document.querySelectorAll('[data-open-login-panel]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openLoginPanel();
+                });
+            });
             if (closeBtn) closeBtn.addEventListener('click', closeLoginPanel);
             if (overlay) overlay.addEventListener('click', closeLoginPanel);
             document.addEventListener('keydown', function(e) {
