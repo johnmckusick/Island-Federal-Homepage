@@ -702,17 +702,31 @@
             text-decoration: underline;
         }
 
-        /* Enroll — single headline + CTA, no extra chrome */
+        /* Enroll — headline, proof points, strong CTA */
         .login-panel-enroll-promo {
             margin-top: auto;
             margin-left: -28px;
             margin-right: -28px;
             margin-bottom: -28px;
-            padding: 36px 28px calc(36px + env(safe-area-inset-bottom, 0px));
-            background: linear-gradient(165deg, #e8f3fb 0%, #d8ebf8 55%, #c9e2f4 100%);
-            border-top: 1px solid rgba(0, 103, 172, 0.12);
+            padding: 32px 28px calc(40px + env(safe-area-inset-bottom, 0px));
+            background:
+                radial-gradient(120% 80% at 100% 0%, rgba(0, 143, 212, 0.14) 0%, transparent 55%),
+                linear-gradient(168deg, #e4f1fb 0%, #d0e7f8 45%, #b9daf3 100%);
+            border-top: 1px solid rgba(0, 103, 172, 0.14);
             position: relative;
             overflow: hidden;
+        }
+
+        .login-panel-enroll-promo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue), var(--tertiary-blue, #5eb8e8));
+            opacity: 0.9;
+            pointer-events: none;
         }
 
         .login-panel-enroll-inner {
@@ -721,19 +735,62 @@
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            gap: 22px;
+            gap: 18px;
             max-width: 100%;
+        }
+
+        .login-panel-enroll-kicker {
+            margin: 0;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--primary-blue);
         }
 
         .login-panel-enroll-title {
             font-family: 'Inter Tight', sans-serif;
-            font-size: 24px;
+            font-size: clamp(22px, 4.5vw, 26px);
             font-weight: 700;
             color: var(--navy-text);
-            line-height: 1.28;
+            line-height: 1.22;
             margin: 0;
-            letter-spacing: -0.025em;
-            max-width: 18ch;
+            letter-spacing: -0.03em;
+        }
+
+        .login-panel-enroll-points {
+            list-style: none;
+            margin: 4px 0 0 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .login-panel-enroll-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--navy-text);
+            margin: 0;
+        }
+
+        .login-panel-enroll-points li i {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            margin-top: 1px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 103, 172, 0.3);
         }
 
         .login-panel-enroll-cta {
@@ -745,22 +802,23 @@
             padding: 18px 28px;
             min-height: 56px;
             border-radius: 100px;
-            background: var(--navy-text);
+            background: linear-gradient(135deg, #0a2540 0%, var(--navy-text) 40%, var(--primary-blue) 100%);
             color: white !important;
             font-family: 'Inter Tight', sans-serif;
             font-weight: 700;
             font-size: 17px;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 8px 28px rgba(15, 40, 71, 0.22);
+            box-shadow: 0 10px 32px rgba(10, 37, 64, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+            margin-top: 6px;
         }
 
         .login-panel-enroll-cta:hover {
-            background: var(--primary-blue);
+            filter: brightness(1.06);
             transform: translateY(-2px);
-            box-shadow: 0 12px 36px rgba(0, 103, 172, 0.35);
+            box-shadow: 0 14px 40px rgba(0, 103, 172, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
             text-decoration: none;
         }
 
@@ -871,9 +929,31 @@
             margin-right: auto;
         }
         .mega-menu-locations .mega-grid-3 {
-            grid-template-columns: max-content max-content minmax(280px, 320px);
+            grid-template-columns: max-content max-content max-content;
             gap: 24px;
             justify-items: start;
+        }
+
+        .mega-locations-courtesy {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 28px;
+        }
+
+        .mega-locations-courtesy-links {
+            flex: 0 1 auto;
+            min-width: 0;
+        }
+
+        .mega-locations-courtesy .promo-box {
+            flex: 0 0 auto;
+            width: min(260px, 32vw);
+            max-width: 280px;
+            margin-top: 0;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
         }
 
         .col-header {
@@ -3078,6 +3158,14 @@
             .mega-menu-locations .mega-grid-3 > div:last-child {
                 grid-column: 1 / -1;
             }
+            .mega-locations-courtesy {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .mega-locations-courtesy .promo-box {
+                width: 100%;
+                max-width: none;
+            }
             .rates-tabs-container { gap: 8px; }
             .rate-tab { min-width: 90px; padding: 16px 18px; flex: 1; max-width: none; }
             .stats-container { flex-direction: column; gap: 48px; }
@@ -3874,13 +3962,15 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Riverhead</a></li>
                                             </ul>
                                         </div>
-                                        <div>
-                                            <h4 class="col-header">Courtesy Banking</h4>
-                                            <ul class="menu-list">
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-search-location"></i></span> Find a Courtesy Banking Location</a></li>
-                                                <li><a href="#"><span class="menu-icon"><i class="fas fa-money-bill"></i></span> Find a Fee-Free ATM</a></li>
-                                            </ul>
-                                            <div class="promo-box" style="margin-top: 20px;">
+                                        <div class="mega-locations-courtesy">
+                                            <div class="mega-locations-courtesy-links">
+                                                <h4 class="col-header">Courtesy Banking</h4>
+                                                <ul class="menu-list">
+                                                    <li><a href="#"><span class="menu-icon"><i class="fas fa-search-location"></i></span> Find a Courtesy Banking Location</a></li>
+                                                    <li><a href="#"><span class="menu-icon"><i class="fas fa-money-bill"></i></span> Find a Fee-Free ATM</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="promo-box">
                                                 <div class="promo-box-icon"><i class="fas fa-map-marked-alt"></i></div>
                                                 <h4 class="promo-title">Find Us</h4>
                                                 <p class="promo-desc">Visit any of our 8 branches across Long Island.</p>
@@ -3939,7 +4029,13 @@
             </div>
             <div class="login-panel-enroll-promo" aria-label="Enroll in online banking">
                 <div class="login-panel-enroll-inner">
-                    <h4 class="login-panel-enroll-title" id="loginPanelEnrollHeading">New here? Enroll once, then sign in anytime.</h4>
+                    <p class="login-panel-enroll-kicker">Why Island Federal</p>
+                    <h4 class="login-panel-enroll-title" id="loginPanelEnrollHeading">You’re more than an account number.</h4>
+                    <ul class="login-panel-enroll-points" aria-label="Member benefits">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Not-for-profit—we reinvest in <strong>you</strong>, not shareholders.</span></li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Strong rates &amp; fewer fees, built for Long Island.</span></li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Deposits federally insured by <strong>NCUA</strong>.</span></li>
+                    </ul>
                     <a href="https://online.islandfcu.com" target="_blank" rel="noopener noreferrer" class="login-panel-enroll-cta" aria-describedby="loginPanelEnrollHeading">Start enrollment <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
