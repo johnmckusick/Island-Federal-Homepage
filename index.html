@@ -291,25 +291,29 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            min-width: 0;
         }
 
         .header-utilities {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 12px 20px;
+            flex-wrap: nowrap;
+            gap: 12px 16px;
             padding: 10px 0 10px 30px;
             padding-right: clamp(24px, 4vw, 40px);
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            min-width: 0;
         }
 
         .header-utilities-left {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 12px 20px;
+            flex-wrap: nowrap;
+            gap: 12px 16px;
+            flex: 0 1 auto;
+            min-width: 0;
         }
 
         /* Align “Contact Us” with “Bank” (nav-row 30px + .nav-link horizontal padding 14px) */
@@ -320,9 +324,12 @@
         .header-utilities-right {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
+            flex-wrap: nowrap;
+            gap: 10px;
             margin-left: auto;
+            flex: 1 1 auto;
+            justify-content: flex-end;
+            min-width: 0;
         }
 
         .header-utilities .util-link,
@@ -333,6 +340,7 @@
             color: rgba(255, 255, 255, 0.92);
             font-size: 13px;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .header-utilities .util-link:hover { color: white; }
@@ -373,6 +381,9 @@
 
         .header-utilities .search-wrapper {
             width: 180px;
+            max-width: 180px;
+            flex: 1 1 120px;
+            min-width: 0;
             position: relative;
         }
 
@@ -1431,11 +1442,18 @@
         .rate-content-grid {
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 48px;
+            grid-template-rows: auto auto;
+            gap: 24px 48px;
             align-items: center;
         }
 
-        .rate-content-info h3 {
+        .rate-content-text {
+            grid-column: 1;
+            grid-row: 1;
+            align-self: start;
+        }
+
+        .rate-content-text h3 {
             font-family: 'Inter Tight', sans-serif;
             font-size: 38px;
             font-weight: 500;
@@ -1443,18 +1461,21 @@
             margin-bottom: 12px;
         }
 
-        .rate-content-info h3 span { color: var(--primary-blue); }
+        .rate-content-text h3 span { color: var(--primary-blue); }
 
-        .rate-content-info p {
+        .rate-content-text p {
             font-size: 16px;
             color: var(--grey-text);
-            margin-bottom: 24px;
+            margin-bottom: 0;
             max-width: 520px;
         }
 
         .rate-content-ctas {
+            grid-column: 1;
+            grid-row: 2;
             display: flex;
             gap: 12px;
+            align-self: start;
         }
 
         .btn-rate-primary {
@@ -1491,6 +1512,9 @@
         .rate-display-box {
             display: flex;
             gap: 24px;
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            align-self: center;
         }
 
         .rate-display-item {
@@ -1603,6 +1627,15 @@
 
         .btn-view-all-rates:hover i { 
             transform: translateX(4px);
+        }
+
+        .rates-selection-hint {
+            display: none;
+            font-size: 13px;
+            color: var(--grey-text);
+            text-align: center;
+            margin: -24px 0 20px 0;
+            line-height: 1.4;
         }
 
         /* --- STATS SECTION - MODERN DESIGN --- */
@@ -3156,8 +3189,13 @@
             .nav-link { padding: 16px 10px; font-size: 16px; }
             .btn-rates { padding: 8px 16px; font-size: 13px; }
             .btn-header-login { padding: 10px 22px; font-size: 15px; }
-            .header-utilities { gap: 10px 14px; padding: 8px 24px 8px 20px; }
-            .header-utilities .search-wrapper { width: 150px; }
+            .header-utilities { gap: 8px 12px; padding: 8px 24px 8px 20px; }
+            .header-utilities-left { gap: 8px 12px; }
+            .header-utilities-right { gap: 8px; }
+            .header-utilities .search-wrapper { width: auto; max-width: 150px; flex-basis: 130px; }
+            .header-utilities .btn-top { padding: 8px 14px; font-size: 12px; }
+            .header-utilities .util-link,
+            .header-utilities .util-text { font-size: 12px; }
             .mega-menu-wrapper { max-width: 1300px; padding: 28px 32px; }
             .mega-grid-5 { gap: 20px; }
             .mega-menu-locations .mega-grid-3 { gap: 20px; }
@@ -3205,7 +3243,15 @@
             .location-item { flex: 0 0 auto; margin-bottom: 0; }
             
             /* Header adjustments for this breakpoint */
-            .header-utilities { padding: 8px 24px 8px 16px; }
+            .header-utilities { padding: 8px 20px 8px 12px; gap: 8px 10px; }
+            .header-utilities-left { gap: 6px 10px; }
+            .header-utilities-left > :first-child { margin-left: 8px; }
+            .header-utilities-right { gap: 6px; }
+            .header-utilities .search-wrapper { max-width: 120px; flex-basis: 100px; }
+            .header-utilities .btn-top { padding: 7px 10px; font-size: 11px; gap: 4px; }
+            .header-utilities .util-link,
+            .header-utilities .util-text { font-size: 11px; gap: 6px; }
+            .logo-area { padding-right: 24px; }
             .nav-row { padding: 0 24px 0 20px; }
             .nav-menu { gap: 4px; }
             .nav-quick-actions { gap: 8px; }
@@ -3275,21 +3321,44 @@
             }
             .rate-content-area { padding: 24px; }
             .rate-content-grid { grid-template-columns: 1fr; gap: 24px; }
-            .rate-content-info { text-align: center; }
-            .rate-display-box { justify-content: center; flex-wrap: wrap; }
+            .rate-content-text { text-align: center; }
+            .rate-display-box {
+                grid-column: 1;
+                grid-row: auto;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .rate-content-ctas {
+                grid-column: 1;
+                grid-row: auto;
+                justify-content: center;
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
             .rate-display-item { flex: 1; min-width: 140px; }
-            .rate-content-ctas { flex-direction: column; }
             .btn-rate-primary, .btn-rate-secondary { width: 100%; justify-content: center; }
             
             /* Stats Section */
             .stats-section { padding: 60px 0; }
             .stats-header h2 { font-size: 36px; }
             .stats-header p { font-size: 16px; }
-            .stats-display { flex-wrap: wrap; }
-            .stat-item { flex: 0 0 50%; padding: 32px 20px; }
-            .stat-item:nth-child(2)::after { display: none; }
-            .stat-number { font-size: 52px; }
-            .stat-label { font-size: 14px; }
+            .stats-display {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                max-width: 520px;
+                margin: 0 auto;
+            }
+            .stat-item {
+                flex: none;
+                padding: 24px 18px;
+                text-align: left;
+                background: rgba(255, 255, 255, 0.06);
+                border-radius: 14px;
+            }
+            .stat-item::after { display: none !important; }
+            .stat-number { font-size: 44px; }
+            .stat-label { font-size: 12px; }
             
             /* Advantage Section */
             .advantage-section { padding: 60px 0; }
@@ -3303,6 +3372,13 @@
             /* Community Section */
             .community-section { padding: 60px 0; }
             .community-grid { gap: 40px; }
+            .community-content {
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .community-content .section-label { align-self: flex-start; }
             .community-content h2 { font-size: 32px; }
             .community-badge { 
                 position: relative; 
@@ -3311,8 +3387,8 @@
                 margin-top: 16px;
                 display: inline-flex;
             }
-            .community-features { grid-template-columns: 1fr; gap: 16px; }
-            .community-feature { padding: 16px; }
+            .community-features { grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+            .community-feature { padding: 12px 0; }
             
             /* Member Spotlight Carousel */
             .member-spotlight-section { padding: 60px 0; }
@@ -3383,40 +3459,124 @@
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
-            /* Quick Access Rates - Fix clickability */
+            /* Quick Access Rates — horizontal tab scroll + detail stack (headline → rates → CTAs) */
             .quick-rates-section { padding: 56px 0; }
-            .quick-rates-header { margin-bottom: 32px; }
+            .rates-selection-hint {
+                display: block;
+                margin: -8px 0 16px 0;
+                padding: 0 4px;
+                text-align: left;
+            }
+            .quick-rates-header { margin-bottom: 20px; }
             .quick-rates-header h2 { font-size: 28px; }
             .quick-rates-header p { font-size: 14px; }
-            .rates-tabs-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .rate-tab { padding: 14px 10px; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+            .rates-tabs-container {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                gap: 10px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x proximity;
+                scrollbar-width: thin;
+                margin-bottom: 8px;
+                padding: 4px 4px 12px 4px;
+            }
+            .rates-tabs-container::-webkit-scrollbar { height: 4px; }
+            .rates-tabs-container::-webkit-scrollbar-thumb {
+                background: rgba(0, 103, 172, 0.35);
+                border-radius: 4px;
+            }
+            .rate-tab {
+                flex: 0 0 auto;
+                width: 118px;
+                max-width: none;
+                min-width: 0;
+                padding: 14px 10px;
+                scroll-snap-align: start;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
             .rate-tab-icon { width: 32px; height: 32px; pointer-events: none; }
             .rate-tab-icon svg { width: 20px; height: 20px; pointer-events: none; }
-            .rate-tab span { font-size: 13px; pointer-events: none; }
-            .rate-content-area { padding: 24px 16px; }
-            .rate-content-grid { grid-template-columns: 1fr; gap: 24px; }
-            .rate-content-info { text-align: center; }
-            .rate-content-info h3 { font-size: 28px; }
-            .rate-content-info p { font-size: 14px; }
-            .rate-display-box { flex-direction: column; gap: 12px; width: 100%; }
-            .rate-display-item { padding: 20px; flex: none; width: 100%; }
-            .rate-display-value { font-size: 42px; }
-            .rate-content-ctas { flex-direction: column; gap: 12px; }
-            .btn-rate-primary, .btn-rate-secondary { width: 100%; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-            .rate-content-footer { margin-top: 20px; margin-bottom: -12px; padding-top: 16px; }
+            .rate-tab span { font-size: 12px; pointer-events: none; line-height: 1.25; text-align: center; }
+            .rate-content-area { padding: 20px 16px; margin-top: 4px; }
+            .rate-content-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: stretch;
+            }
+            .rate-content-text,
+            .rate-display-box,
+            .rate-content-ctas {
+                grid-column: auto !important;
+                grid-row: auto !important;
+                width: 100%;
+            }
+            .rate-content-text { text-align: left; }
+            .rate-content-text h3 { font-size: 26px; }
+            .rate-content-text p { font-size: 14px; }
+            .rate-display-box {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 12px;
+                align-self: stretch;
+            }
+            .rate-display-item {
+                padding: 18px 16px;
+                flex: 1 1 calc(50% - 6px);
+                min-width: 0;
+                width: auto;
+            }
+            .rate-display-value { font-size: 36px; }
+            .rate-content-ctas {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 0;
+            }
+            .btn-rate-primary, .btn-rate-secondary {
+                width: 100%;
+                justify-content: center;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            .rate-content-footer {
+                margin-top: 16px;
+                margin-bottom: -8px;
+                padding-top: 14px;
+                justify-content: flex-start;
+            }
             
-            /* Stats Section */
+            /* Stats — compact 2×2 on small phones */
             .stats-section { padding: 56px 0; }
-            .stats-header { margin-bottom: 40px; }
+            .stats-header { margin-bottom: 32px; }
             .stats-header h2 { font-size: 30px; }
             .stats-header p { font-size: 15px; }
-            .stats-display { flex-direction: column; gap: 0; }
-            .stat-item { flex: none; width: 100%; padding: 28px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-            .stat-item:not(:last-child)::after { display: none; }
-            .stat-item:last-child { border-bottom: none; }
-            .stat-number { font-size: 48px; }
-            .stat-label { font-size: 13px; }
-            .stats-cta-container { margin-top: 40px; }
+            .stats-display {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                max-width: 100%;
+            }
+            .stat-item {
+                flex: none;
+                width: auto;
+                padding: 20px 14px;
+                text-align: left;
+                background: rgba(255, 255, 255, 0.06);
+                border-radius: 12px;
+                border-bottom: none;
+            }
+            .stat-item:not(:last-child)::after,
+            .stat-item::after { display: none !important; }
+            .stat-number { font-size: 40px; }
+            .stat-label { font-size: 11px; letter-spacing: 0.06em; }
+            .stats-cta-container { margin-top: 32px; text-align: left; }
             .stats-cta { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
             /* Advantage Section - Stacked boxes */
@@ -3435,9 +3595,16 @@
             .community-section { padding: 56px 0; }
             .community-grid { grid-template-columns: 1fr; gap: 0; }
             .community-images { order: 1; position: relative; margin-bottom: 60px; }
-            .community-content { order: 2; text-align: center; }
+            .community-content {
+                order: 2;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .community-content .section-label { align-self: flex-start; }
             .community-content h2 { font-size: 28px; }
-            .community-content > p { font-size: 14px; }
+            .community-content > p { font-size: 14px; max-width: 100%; }
             .community-main-image img { height: 280px; }
             .community-badge { 
                 position: absolute; 
@@ -3457,12 +3624,24 @@
             .community-badge-text { text-align: left; }
             .community-badge-text h4 { font-size: 22px; }
             .community-badge-text p { font-size: 13px; }
-            .community-features { grid-template-columns: 1fr; gap: 12px; }
-            .community-feature { padding: 16px; }
+            .community-features {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px 14px;
+                width: 100%;
+            }
+            .community-feature { padding: 12px 0; align-items: flex-start; }
             .community-feature-icon { width: 44px; height: 44px; }
-            .community-feature h4 { font-size: 18px; }
-            .community-feature p { font-size: 13px; }
-            .btn-community { width: 100%; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+            .community-feature h4 { font-size: 16px; }
+            .community-feature p { font-size: 12px; line-height: 1.4; }
+            .btn-community {
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+                align-self: stretch;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
             
             /* Member Spotlight Carousel - Touch enabled */
             .member-spotlight-section { padding: 56px 0; }
@@ -3584,19 +3763,24 @@
             .hero-cta-group { gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
             
-            /* Quick Access Rates */
+            /* Quick Access Rates — keep horizontal scroll (inherit 768); tighten */
             .quick-rates-section { padding: 40px 0; }
             .quick-rates-header h2 { font-size: 24px; }
             .quick-rates-header p { font-size: 13px; }
-            .rates-tabs-container { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .rate-tab { padding: 12px 8px; }
+            .rates-tabs-container {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 8px;
+            }
+            .rate-tab { flex: 0 0 auto; width: 104px; padding: 12px 8px; }
             .rate-tab-icon { width: 28px; height: 28px; }
             .rate-tab-icon svg { width: 16px; height: 16px; }
             .rate-tab span { font-size: 11px; }
             .rate-content-area { padding: 20px 16px; }
             .rate-content-grid { gap: 20px; }
-            .rate-content-info h3 { font-size: 24px; }
-            .rate-content-info p { font-size: 13px; }
+            .rate-content-text h3 { font-size: 24px; }
+            .rate-content-text p { font-size: 13px; }
             .rate-display-box { flex-direction: column; gap: 12px; }
             .rate-display-item { padding: 20px; min-width: 100%; width: 100%; }
             .rate-display-value { font-size: 36px; }
@@ -3606,18 +3790,27 @@
             .rate-content-footer { margin-top: 16px; }
             .btn-view-all-rates { font-size: 13px; }
             
-            /* Stats Section */
+            /* Stats — stay 2×2 */
             .stats-section { padding: 48px 0; }
             .stats-header { margin-bottom: 40px; }
             .stats-header h2 { font-size: 26px; }
             .stats-header p { font-size: 14px; }
-            .stats-display { flex-direction: column; gap: 0; }
-            .stat-item { flex: none; width: 100%; padding: 24px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-            .stat-item:not(:last-child)::after { display: none; }
-            .stat-item:last-child { border-bottom: none; }
-            .stat-number { font-size: 40px; }
-            .stat-label { font-size: 12px; }
-            .stats-cta-container { margin-top: 32px; }
+            .stats-display {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .stat-item {
+                padding: 18px 12px;
+                text-align: left;
+                background: rgba(255, 255, 255, 0.06);
+                border-radius: 12px;
+                border-bottom: none;
+            }
+            .stat-item::after { display: none !important; }
+            .stat-number { font-size: 36px; }
+            .stat-label { font-size: 11px; }
+            .stats-cta-container { margin-top: 28px; text-align: left; }
             .stats-cta { padding: 14px 24px; font-size: 14px; }
             
             /* Advantage Section - Stacked */
@@ -3631,11 +3824,16 @@
             .advantage-card h3 { font-size: 18px; }
             .advantage-card p { font-size: 13px; }
             
-            /* Community Section - Badge overlap */
+            /* Community — left-aligned + 2×2 features */
             .community-section { padding: 40px 0; }
             .community-grid { grid-template-columns: 1fr; gap: 0; }
             .community-images { order: 1; margin-bottom: 50px; }
-            .community-content { order: 2; text-align: center; }
+            .community-content {
+                order: 2;
+                text-align: left;
+                align-items: flex-start;
+            }
+            .community-content .section-label { align-self: flex-start; }
             .community-content h2 { font-size: 24px; }
             .community-content > p { font-size: 14px; }
             .community-main-image img { height: 220px; }
@@ -3647,8 +3845,8 @@
             .community-badge-icon { width: 48px; height: 48px; font-size: 20px; }
             .community-badge-text h4 { font-size: 20px; }
             .community-badge-text p { font-size: 12px; }
-            .community-features { grid-template-columns: 1fr; gap: 12px; }
-            .community-feature { padding: 16px; }
+            .community-features { grid-template-columns: 1fr 1fr; gap: 10px 12px; width: 100%; }
+            .community-feature { padding: 10px 0; }
             .community-feature-icon { width: 40px; height: 40px; font-size: 16px; }
             .community-feature h4 { font-size: 17px; }
             .community-feature p { font-size: 12px; }
@@ -4057,7 +4255,7 @@
             <div class="login-panel-enroll-promo" aria-label="Enroll in online banking">
                 <div class="login-panel-enroll-inner">
                     <p class="login-panel-enroll-kicker">Why Island Federal</p>
-                    <h4 class="login-panel-enroll-title" id="loginPanelEnrollHeading">You’re more than an account number.</h4>
+                    <h4 class="login-panel-enroll-title" id="loginPanelEnrollHeading">You’re More Than an Account Number.</h4>
                     <ul class="login-panel-enroll-points" aria-label="Member benefits">
                         <li><i class="fas fa-check" aria-hidden="true"></i> <span>Not-for-profit—we reinvest in you, not shareholders.</span></li>
                         <li><i class="fas fa-check" aria-hidden="true"></i> <span>Strong rates &amp; fewer fees, built for Long Island.</span></li>
@@ -4332,15 +4530,13 @@
                 </div>
             </div>
 
+            <p class="rates-selection-hint">Tap a product — rates and actions update directly below.</p>
+
             <div class="rate-content-area active" id="auto-content">
                 <div class="rate-content-grid">
-                    <div class="rate-content-info">
+                    <div class="rate-content-text">
                         <h3>Get Behind the Wheel <span>For Less</span></h3>
                         <p>Rates as low as 5.14% APR. New, used & refinance. Decisions made locally on Long Island, approval in minutes.</p>
-                        <div class="rate-content-ctas">
-                            <a href="#" class="btn-rate-primary">Apply for Auto Loan <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-rate-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <div class="rate-display-box">
                         <div class="rate-display-item">
@@ -4354,6 +4550,10 @@
                             <div class="rate-display-suffix">APR*</div>
                         </div>
                     </div>
+                    <div class="rate-content-ctas">
+                        <a href="#" class="btn-rate-primary">Apply for Auto Loan <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-rate-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
                 <div class="rate-content-footer">
                     <a href="#" class="btn-view-all-rates">View Complete Rate Sheet <i class="fas fa-arrow-right"></i></a>
@@ -4362,13 +4562,9 @@
 
             <div class="rate-content-area" id="home-content">
                 <div class="rate-content-grid">
-                    <div class="rate-content-info">
+                    <div class="rate-content-text">
                         <h3>Make Your <span>Dream Home</span> a Reality</h3>
                         <p>Competitive mortgage rates with personalized service. First-time buyers welcome. Local decisions, local expertise.</p>
-                        <div class="rate-content-ctas">
-                            <a href="#" class="btn-rate-primary">Apply for Mortgage <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-rate-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <div class="rate-display-box">
                         <div class="rate-display-item">
@@ -4382,6 +4578,10 @@
                             <div class="rate-display-suffix">APR*</div>
                         </div>
                     </div>
+                    <div class="rate-content-ctas">
+                        <a href="#" class="btn-rate-primary">Apply for Mortgage <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-rate-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
                 <div class="rate-content-footer">
                     <a href="#" class="btn-view-all-rates">View Complete Rate Sheet <i class="fas fa-arrow-right"></i></a>
@@ -4390,13 +4590,9 @@
 
             <div class="rate-content-area" id="heloc-content">
                 <div class="rate-content-grid">
-                    <div class="rate-content-info">
+                    <div class="rate-content-text">
                         <h3>Tap Into Your <span>Home's Equity</span></h3>
                         <p>Flexible home equity lines of credit for renovations, education, or whatever life brings. No closing costs available.</p>
-                        <div class="rate-content-ctas">
-                            <a href="#" class="btn-rate-primary">Apply for HELOC <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-rate-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <div class="rate-display-box">
                         <div class="rate-display-item">
@@ -4410,6 +4606,10 @@
                             <div class="rate-display-suffix">APR*</div>
                         </div>
                     </div>
+                    <div class="rate-content-ctas">
+                        <a href="#" class="btn-rate-primary">Apply for HELOC <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-rate-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
                 <div class="rate-content-footer">
                     <a href="#" class="btn-view-all-rates">View Complete Rate Sheet <i class="fas fa-arrow-right"></i></a>
@@ -4418,13 +4618,9 @@
 
             <div class="rate-content-area" id="credit-content">
                 <div class="rate-content-grid">
-                    <div class="rate-content-info">
+                    <div class="rate-content-text">
                         <h3>Rewards That <span>Work for You</span></h3>
                         <p>No annual fee, cash back rewards, and a low intro APR. The Island Credit Mastercard® has it all.</p>
-                        <div class="rate-content-ctas">
-                            <a href="#" class="btn-rate-primary">Apply for Credit Card <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-rate-secondary">Compare Cards <i class="fas fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <div class="rate-display-box">
                         <div class="rate-display-item">
@@ -4438,6 +4634,10 @@
                             <div class="rate-display-suffix">No fee ever</div>
                         </div>
                     </div>
+                    <div class="rate-content-ctas">
+                        <a href="#" class="btn-rate-primary">Apply for Credit Card <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-rate-secondary">Compare Cards <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
                 <div class="rate-content-footer">
                     <a href="#" class="btn-view-all-rates">View Complete Rate Sheet <i class="fas fa-arrow-right"></i></a>
@@ -4446,13 +4646,9 @@
 
             <div class="rate-content-area" id="checking-content">
                 <div class="rate-content-grid">
-                    <div class="rate-content-info">
+                    <div class="rate-content-text">
                         <h3>Free Checking That's <span>Truly Free</span></h3>
                         <p>No monthly fees, no minimum balance, free debit card, and access to 125,000+ fee-free ATMs nationwide.</p>
-                        <div class="rate-content-ctas">
-                            <a href="#" class="btn-rate-primary">Open Checking <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-rate-secondary">Compare Accounts <i class="fas fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <div class="rate-display-box">
                         <div class="rate-display-item">
@@ -4466,6 +4662,10 @@
                             <div class="rate-display-suffix">Nationwide</div>
                         </div>
                     </div>
+                    <div class="rate-content-ctas">
+                        <a href="#" class="btn-rate-primary">Open Checking <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-rate-secondary">Compare Accounts <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
                 <div class="rate-content-footer">
                     <a href="#" class="btn-view-all-rates">View Complete Rate Sheet <i class="fas fa-arrow-right"></i></a>
@@ -4474,13 +4674,9 @@
 
             <div class="rate-content-area" id="savings-content">
                 <div class="rate-content-grid">
-                    <div class="rate-content-info">
+                    <div class="rate-content-text">
                         <h3>Watch Your Savings <span>Grow Faster</span></h3>
                         <p>Earn more with our high-yield savings accounts and certificates. Your money works harder at Island Federal.</p>
-                        <div class="rate-content-ctas">
-                            <a href="#" class="btn-rate-primary">Open Savings <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-rate-secondary">See All Rates <i class="fas fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <div class="rate-display-box">
                         <div class="rate-display-item">
@@ -4493,6 +4689,10 @@
                             <div class="rate-display-value">3.50<sup>%</sup></div>
                             <div class="rate-display-suffix">APY*</div>
                         </div>
+                    </div>
+                    <div class="rate-content-ctas">
+                        <a href="#" class="btn-rate-primary">Open Savings <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn-rate-secondary">See All Rates <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="rate-content-footer">
@@ -5388,7 +5588,16 @@
                 document.querySelectorAll('.rate-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
                 document.querySelectorAll('.rate-content-area').forEach(c => c.classList.remove('active'));
-                document.getElementById(tabId + '-content').classList.add('active');
+                const panel = document.getElementById(tabId + '-content');
+                if (panel) panel.classList.add('active');
+                if (window.matchMedia('(max-width: 768px)').matches) {
+                    this.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+                    if (panel) {
+                        requestAnimationFrame(function() {
+                            panel.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                        });
+                    }
+                }
             });
         });
 
