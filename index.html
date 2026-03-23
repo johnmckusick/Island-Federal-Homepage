@@ -1321,10 +1321,14 @@
             padding: 0;
         }
 
-        /* Sleek carousel nav: compact dots + pill for active (no heavy halos) */
+        /* Sleek carousel nav: tight dots + pill; active shows timed fill */
+        #heroSlider {
+            --hero-slide-ms: 4200ms;
+        }
+
         .hero-progress {
             display: flex;
-            gap: 10px;
+            gap: 4px;
             align-items: center;
             justify-content: flex-start;
             flex-shrink: 0;
@@ -1333,25 +1337,25 @@
         }
 
         .hero-bullet {
-            min-width: 44px;
-            height: 44px;
+            min-width: 36px;
+            height: 40px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border: none;
             background: transparent;
             cursor: pointer;
-            padding: 0 10px;
+            padding: 0 3px;
             border-radius: 999px;
             transition: opacity 0.2s ease;
         }
 
         .hero-bullet:hover .hero-bullet-dot {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .hero-bullet.is-active:hover .hero-bullet-dot {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.24);
         }
 
         .hero-bullet:focus-visible {
@@ -1360,29 +1364,75 @@
         }
 
         .hero-bullet-dot {
+            position: relative;
             display: block;
             width: 6px;
             height: 6px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.32);
+            overflow: hidden;
             transition:
-                width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                background 0.35s ease,
-                opacity 0.25s ease;
+                width 0.5s cubic-bezier(0.2, 0.85, 0.25, 1),
+                height 0.4s cubic-bezier(0.2, 0.85, 0.25, 1),
+                background 0.4s ease,
+                opacity 0.25s ease,
+                transform 0.45s cubic-bezier(0.2, 0.85, 0.25, 1);
+        }
+
+        .hero-bullet-dot::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: rgba(255, 255, 255, 0.95);
+            transform: scaleX(0);
+            transform-origin: left center;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero-bullet:not(.is-active) .hero-bullet-dot::after {
+            animation: none;
+            transform: scaleX(0);
+            opacity: 0;
         }
 
         .hero-bullet.is-active .hero-bullet-dot {
             width: 26px;
             height: 6px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .hero-bullet.is-active.is-progressing .hero-bullet-dot::after {
+            opacity: 1;
+            animation: heroBulletFill var(--hero-slide-ms) linear forwards;
+        }
+
+        #heroSlider.is-paused .hero-bullet.is-active.is-progressing .hero-bullet-dot::after {
+            animation-play-state: paused;
+        }
+
+        @keyframes heroBulletFill {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
             .hero-bg { transition: opacity 0.01ms; }
             .hero-panel { transition: none; transform: none; }
             .hero-bullet-dot { transition: none; }
+            .hero-bullet-dot::after { display: none; }
+            .hero-bullet.is-active .hero-bullet-dot {
+                background: rgba(255, 255, 255, 0.95);
+            }
         }
 
         .hero-badge {
@@ -3430,7 +3480,7 @@
             .hero-headline { font-size: 42px; }
             .hero-content { max-width: 100%; padding: 0; }
             .hero-description { font-size: 16px; }
-            .hero-progress { gap: 8px; }
+            .hero-progress { gap: 3px; }
             .hero-cta-group { flex-direction: column; align-items: flex-start; }
             .btn-primary, .btn-secondary { width: auto; min-width: 200px; justify-content: center; }
             
@@ -3586,7 +3636,7 @@
             .hero-headline { font-size: 34px; line-height: 1.2; }
             .hero-badge { font-size: 12px; padding: 6px 12px; }
             .hero-description { font-size: 15px; margin-bottom: 32px; max-width: 100%; }
-            .hero-progress { gap: 6px; }
+            .hero-progress { gap: 3px; }
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
@@ -3894,7 +3944,7 @@
             .hero-description { font-size: 14px; margin-bottom: 24px; }
             .hero-content { padding: 0; }
             .hero-cta-group { gap: 12px; }
-            .hero-bullet { min-width: 40px; height: 40px; padding: 0 8px; }
+            .hero-bullet { min-width: 28px; height: 36px; padding: 0 3px; }
             .hero-bullet-dot { width: 5px; height: 5px; }
             .hero-bullet.is-active .hero-bullet-dot { width: 22px; height: 5px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
@@ -5395,7 +5445,7 @@
             var root = document.getElementById('heroSlider');
             if (!root) return;
 
-            var SLIDE_MS = 6500;
+            var SLIDE_MS = 4200;
             var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             var bgs = root.querySelectorAll('.hero-bg');
@@ -5405,11 +5455,22 @@
             var current = 0;
             var n = panels.length;
 
+            root.style.setProperty('--hero-slide-ms', SLIDE_MS + 'ms');
+
             function setBullets(activeIndex) {
                 bullets.forEach(function (btn, i) {
+                    btn.classList.remove('is-progressing');
                     btn.classList.toggle('is-active', i === activeIndex);
                     btn.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
                 });
+                if (!reduceMotion && bullets[activeIndex]) {
+                    var activeBtn = bullets[activeIndex];
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            activeBtn.classList.add('is-progressing');
+                        });
+                    });
+                }
             }
 
             function goToSlide(index) {
@@ -5443,11 +5504,23 @@
             });
 
             root.addEventListener('mouseenter', function () {
+                root.classList.add('is-paused');
                 if (timer) clearInterval(timer);
             });
             root.addEventListener('mouseleave', function () {
+                root.classList.remove('is-paused');
                 if (reduceMotion) return;
                 if (timer) clearInterval(timer);
+                var active = bullets[current];
+                if (active) {
+                    active.classList.remove('is-progressing');
+                    void active.offsetWidth;
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            active.classList.add('is-progressing');
+                        });
+                    });
+                }
                 timer = setInterval(function () {
                     goToSlide((current + 1) % n);
                 }, SLIDE_MS);
