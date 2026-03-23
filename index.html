@@ -1278,26 +1278,34 @@
             padding-bottom: 100px;
         }
 
+        /* Stack slides in one grid cell so row height = tallest slide — bullets sit below CTAs */
         .hero-contents {
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 28px;
             max-width: 700px;
-            min-height: 320px;
+            min-width: 0;
         }
 
-        @media (min-width: 769px) {
-            .hero-contents { min-height: 340px; }
+        .hero-panels-stack {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-rows: 1fr;
+            width: 100%;
+            min-width: 0;
         }
 
         .hero-panel {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
+            grid-column: 1;
+            grid-row: 1;
+            min-width: 0;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(12px);
-            transition: opacity 0.55s ease, transform 0.55s ease, visibility 0.55s;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
             pointer-events: none;
+            z-index: 0;
         }
 
         .hero-panel.is-active {
@@ -1305,6 +1313,7 @@
             visibility: visible;
             transform: translateY(0);
             pointer-events: auto;
+            z-index: 1;
         }
 
         .hero-content {
@@ -1314,59 +1323,63 @@
 
         .hero-progress {
             display: flex;
-            gap: 10px;
-            max-width: 360px;
-            margin-top: 36px;
+            gap: 14px;
             align-items: center;
-        }
-
-        .hero-progress-track {
-            flex: 1;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.22);
-            border-radius: 100px;
-            overflow: hidden;
-            cursor: pointer;
-            border: none;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            margin: 0;
             padding: 0;
-            position: relative;
-            transition: background 0.3s ease, transform 0.2s ease;
         }
 
-        .hero-progress-track:hover,
-        .hero-progress-track:focus-visible {
-            background: rgba(255, 255, 255, 0.32);
+        .hero-bullet {
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            border-radius: 50%;
+            transition: transform 0.25s ease;
+        }
+
+        .hero-bullet:hover,
+        .hero-bullet:focus-visible {
+            transform: scale(1.06);
             outline: none;
-            transform: scaleY(1.15);
         }
 
-        .hero-progress-track.is-active {
-            background: rgba(255, 255, 255, 0.35);
+        .hero-bullet:focus-visible {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 0 4px rgba(0, 103, 172, 0.5);
+            border-radius: 50%;
         }
 
-        .hero-progress-fill {
+        .hero-bullet-dot {
             display: block;
-            height: 100%;
-            width: 0%;
-            border-radius: 100px;
-            background: linear-gradient(90deg, #4dc3ff 0%, #a5e3ff 50%, #ffffff 100%);
-            box-shadow: 0 0 12px rgba(77, 195, 255, 0.45);
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.38);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            transition: width 0.35s ease, height 0.35s ease, background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
         }
 
-        .hero-progress-track.is-active .hero-progress-fill {
-            animation: heroProgressFill var(--hero-slide-ms, 6000ms) linear forwards;
-        }
-
-        @keyframes heroProgressFill {
-            from { width: 0%; }
-            to { width: 100%; }
+        .hero-bullet.is-active .hero-bullet-dot {
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(145deg, #ffffff 0%, #b8e8ff 100%);
+            box-shadow:
+                0 0 0 2px rgba(77, 195, 255, 0.55),
+                0 0 22px rgba(77, 195, 255, 0.55),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
         @media (prefers-reduced-motion: reduce) {
             .hero-bg { transition: opacity 0.01ms; }
             .hero-panel { transition: none; transform: none; }
-            .hero-progress-fill { animation: none !important; }
-            .hero-progress-track.is-active .hero-progress-fill { width: 100%; }
+            .hero-bullet-dot { transition: none; }
         }
 
         .hero-badge {
@@ -3410,11 +3423,11 @@
             /* Hero Section */
             .hero-section { min-height: 500px; }
             .hero-section .container-wide.hero-inner { padding-top: 60px; padding-bottom: 88px; }
-            .hero-contents { min-height: 300px; }
+            .hero-contents { gap: 24px; }
             .hero-headline { font-size: 42px; }
             .hero-content { max-width: 100%; padding: 0; }
             .hero-description { font-size: 16px; }
-            .hero-progress { margin-top: 28px; max-width: 100%; }
+            .hero-progress { gap: 12px; }
             .hero-cta-group { flex-direction: column; align-items: flex-start; }
             .btn-primary, .btn-secondary { width: auto; min-width: 200px; justify-content: center; }
             
@@ -3565,12 +3578,12 @@
             /* Hero Section */
             .hero-section { min-height: 450px; }
             .hero-section .container-wide.hero-inner { padding-top: 48px; padding-bottom: 72px; }
-            .hero-contents { min-height: 280px; }
+            .hero-contents { gap: 22px; }
             .hero-content { padding: 0; }
             .hero-headline { font-size: 34px; line-height: 1.2; }
             .hero-badge { font-size: 12px; padding: 6px 12px; }
             .hero-description { font-size: 15px; margin-bottom: 32px; max-width: 100%; }
-            .hero-progress { margin-top: 24px; gap: 8px; }
+            .hero-progress { gap: 10px; }
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
@@ -3873,12 +3886,14 @@
             /* Hero */
             .hero-section { min-height: 400px; }
             .hero-section .container-wide.hero-inner { padding-top: 40px; padding-bottom: 56px; }
-            .hero-contents { min-height: 300px; }
+            .hero-contents { gap: 20px; }
             .hero-headline { font-size: 28px; }
             .hero-description { font-size: 14px; margin-bottom: 24px; }
             .hero-content { padding: 0; }
             .hero-cta-group { gap: 12px; }
-            .hero-progress { margin-top: 20px; }
+            .hero-bullet { width: 44px; height: 44px; }
+            .hero-bullet-dot { width: 8px; height: 8px; }
+            .hero-bullet.is-active .hero-bullet-dot { width: 12px; height: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
             
             /* Quick Access Rates — keep horizontal scroll (inherit 768); tighten */
@@ -4496,62 +4511,64 @@
     <!-- HERO SECTION — 3-slide product spotlight -->
     <section class="hero-section" id="heroSlider" aria-roledescription="carousel" aria-label="Featured products and offers">
         <div class="hero-backgrounds" aria-hidden="true">
-            <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
-            <div class="hero-bg" data-hero-bg="1" style="background-image: url('https://images.unsplash.com/photo-1449965408861-eaa9f722f582?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
-            <div class="hero-bg" data-hero-bg="2" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
+            <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
+            <div class="hero-bg" data-hero-bg="1" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
+            <div class="hero-bg" data-hero-bg="2" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
         </div>
         <div class="container-wide hero-inner">
             <div class="hero-contents">
-                <div class="hero-panel is-active" id="hero-slide-0" data-hero-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 3: Mortgages" aria-hidden="false">
-                    <div class="hero-content">
-                        <div class="hero-badge">
-                            <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                <div class="hero-panels-stack">
+                    <div class="hero-panel is-active" id="hero-slide-0" data-hero-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 3: Mortgages" aria-hidden="false">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                            </div>
+                            <h1 class="hero-headline">The Key to Your <span>New Home</span></h1>
+                            <p class="hero-description">Local mortgage decisions, first-time buyer programs, and rates that compete with anyone—plus a team that answers the phone when you call.</p>
+                            <div class="hero-cta-group">
+                                <a href="#" class="btn-primary">Get Pre-Approved <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="btn-secondary"><i class="fas fa-home"></i> Mortgage Rates</a>
+                            </div>
                         </div>
-                        <h1 class="hero-headline">The Key to Your <span>New Home</span></h1>
-                        <p class="hero-description">Local mortgage decisions, first-time buyer programs, and rates that compete with anyone—plus a team that answers the phone when you call.</p>
-                        <div class="hero-cta-group">
-                            <a href="#" class="btn-primary">Get Pre-Approved <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-secondary"><i class="fas fa-home"></i> Mortgage Rates</a>
+                    </div>
+                    <div class="hero-panel" id="hero-slide-1" data-hero-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 3: Auto loans" aria-hidden="true">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                            </div>
+                            <h2 class="hero-headline">Rates That <span>Move You</span></h2>
+                            <p class="hero-description">New, used, or refinance—get pre-approved in minutes. Not-for-profit pricing means more car for your payment, not more profit for Wall Street.</p>
+                            <div class="hero-cta-group">
+                                <a href="#" class="btn-primary">Apply for Auto Loan <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="btn-secondary"><i class="fas fa-car"></i> Auto Loan Rates</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-panel" id="hero-slide-2" data-hero-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 3: Savings" aria-hidden="true">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                            </div>
+                            <h2 class="hero-headline">Your Money, <span>Working Harder</span></h2>
+                            <p class="hero-description">High-yield savings and certificates that actually reward you. Same NCUA insurance as the big banks—typically better APYs because we answer to members, not shareholders.</p>
+                            <div class="hero-cta-group">
+                                <a href="#" class="btn-primary">See Deposit Rates <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="btn-secondary"><i class="fas fa-piggy-bank"></i> Open an Account</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero-panel" id="hero-slide-1" data-hero-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 3: Auto loans" aria-hidden="true">
-                    <div class="hero-content">
-                        <div class="hero-badge">
-                            <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
-                        </div>
-                        <h2 class="hero-headline">Rates That <span>Move You</span></h2>
-                        <p class="hero-description">New, used, or refinance—get pre-approved in minutes. Not-for-profit pricing means more car for your payment, not more profit for Wall Street.</p>
-                        <div class="hero-cta-group">
-                            <a href="#" class="btn-primary">Apply for Auto Loan <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-secondary"><i class="fas fa-car"></i> Auto Loan Rates</a>
-                        </div>
-                    </div>
+                <div class="hero-progress" role="tablist" aria-label="Choose hero slide">
+                    <button type="button" class="hero-bullet is-active" role="tab" aria-selected="true" aria-controls="hero-slide-0" id="hero-tab-0" data-hero-go="0" title="Mortgages">
+                        <span class="hero-bullet-dot" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="hero-bullet" role="tab" aria-selected="false" aria-controls="hero-slide-1" id="hero-tab-1" data-hero-go="1" title="Auto loans">
+                        <span class="hero-bullet-dot" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="hero-bullet" role="tab" aria-selected="false" aria-controls="hero-slide-2" id="hero-tab-2" data-hero-go="2" title="Savings &amp; CDs">
+                        <span class="hero-bullet-dot" aria-hidden="true"></span>
+                    </button>
                 </div>
-                <div class="hero-panel" id="hero-slide-2" data-hero-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 3: Savings" aria-hidden="true">
-                    <div class="hero-content">
-                        <div class="hero-badge">
-                            <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
-                        </div>
-                        <h2 class="hero-headline">Your Money, <span>Working Harder</span></h2>
-                        <p class="hero-description">High-yield savings and certificates that actually reward you. Same NCUA insurance as the big banks—typically better APYs because we answer to members, not shareholders.</p>
-                        <div class="hero-cta-group">
-                            <a href="#" class="btn-primary">See Deposit Rates <i class="fas fa-arrow-right"></i></a>
-                            <a href="#" class="btn-secondary"><i class="fas fa-piggy-bank"></i> Open an Account</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-progress" role="tablist" aria-label="Choose hero slide">
-                <button type="button" class="hero-progress-track is-active" role="tab" aria-selected="true" aria-controls="hero-slide-0" id="hero-tab-0" data-hero-go="0" title="Mortgages">
-                    <span class="hero-progress-fill" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="hero-progress-track" role="tab" aria-selected="false" aria-controls="hero-slide-1" id="hero-tab-1" data-hero-go="1" title="Auto loans">
-                    <span class="hero-progress-fill" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="hero-progress-track" role="tab" aria-selected="false" aria-controls="hero-slide-2" id="hero-tab-2" data-hero-go="2" title="Savings &amp; CDs">
-                    <span class="hero-progress-fill" aria-hidden="true"></span>
-                </button>
             </div>
         </div>
     </section>
@@ -5380,34 +5397,19 @@
 
             var bgs = root.querySelectorAll('.hero-bg');
             var panels = root.querySelectorAll('.hero-panel');
-            var tracks = root.querySelectorAll('.hero-progress-track');
+            var bullets = root.querySelectorAll('.hero-bullet');
             var timer = null;
             var current = 0;
             var n = panels.length;
 
-            root.style.setProperty('--hero-slide-ms', SLIDE_MS + 'ms');
-
-            function restartProgressAnimation(activeIndex) {
-                tracks.forEach(function (track, i) {
-                    var fill = track.querySelector('.hero-progress-fill');
-                    track.classList.toggle('is-active', i === activeIndex);
-                    track.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
-                    if (!fill) return;
-                    fill.style.animation = 'none';
-                    if (i !== activeIndex) {
-                        fill.style.width = '0%';
-                        return;
-                    }
-                    void fill.offsetWidth;
-                    if (reduceMotion) {
-                        fill.style.width = '100%';
-                    } else {
-                        fill.style.animation = '';
-                    }
+            function setBullets(activeIndex) {
+                bullets.forEach(function (btn, i) {
+                    btn.classList.toggle('is-active', i === activeIndex);
+                    btn.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
                 });
             }
 
-            function goToSlide(index, userInitiated) {
+            function goToSlide(index) {
                 if (index < 0 || index >= n) return;
                 current = index;
 
@@ -5420,20 +5422,20 @@
                     panel.setAttribute('aria-hidden', on ? 'false' : 'true');
                 });
 
-                restartProgressAnimation(index);
+                setBullets(index);
 
                 if (timer) clearInterval(timer);
                 if (!reduceMotion) {
                     timer = setInterval(function () {
-                        goToSlide((current + 1) % n, false);
+                        goToSlide((current + 1) % n);
                     }, SLIDE_MS);
                 }
             }
 
-            tracks.forEach(function (track) {
-                track.addEventListener('click', function () {
-                    var idx = parseInt(track.getAttribute('data-hero-go'), 10);
-                    if (!isNaN(idx)) goToSlide(idx, true);
+            bullets.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var idx = parseInt(btn.getAttribute('data-hero-go'), 10);
+                    if (!isNaN(idx)) goToSlide(idx);
                 });
             });
 
@@ -5443,13 +5445,12 @@
             root.addEventListener('mouseleave', function () {
                 if (reduceMotion) return;
                 if (timer) clearInterval(timer);
-                restartProgressAnimation(current);
                 timer = setInterval(function () {
-                    goToSlide((current + 1) % n, false);
+                    goToSlide((current + 1) % n);
                 }, SLIDE_MS);
             });
 
-            goToSlide(0, false);
+            goToSlide(0);
         })();
 
         // Login slide-in panel (desktop + mobile)
