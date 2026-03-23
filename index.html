@@ -3005,15 +3005,38 @@
         }
 
         .mobile-submenu a {
-            display: block;
-            padding: 12px 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px 12px 28px;
             color: var(--grey-text);
             font-size: 14px;
+            font-weight: 500;
         }
 
         .mobile-submenu a:hover {
             color: var(--primary-blue);
             background: var(--lighter-bg);
+        }
+
+        .mobile-submenu a .menu-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: linear-gradient(135deg, var(--lighter-bg) 0%, #e8f4fc 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-blue);
+            font-size: 14px;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+
+        .mobile-submenu a:hover .menu-icon {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--tertiary-blue) 100%);
+            color: white;
         }
 
         .mobile-nav-ctas {
@@ -3991,79 +4014,84 @@
             <div class="mobile-nav-item" data-menu="bank">
                 <a href="#" class="mobile-nav-link">Bank <i class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu">
-                    <a href="#">Cash Back Checking Accounts</a>
-                    <a href="#">Teen Checking</a>
-                    <a href="#">Savings Accounts</a>
-                    <a href="#">High Five Youth Savings</a>
-                    <a href="#">Certificates</a>
-                    <a href="#">Money Market Accounts</a>
-                    <a href="#">IRA's</a>
-                    <a href="#">Business Bank Accounts</a>
-                    <a href="#">Merchant Services</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span> Cash Back Checking Accounts</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-user-graduate"></i></span> Teen Checking</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-piggy-bank"></i></span> Savings Accounts</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-child"></i></span> High Five Youth Savings</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-certificate"></i></span> Certificates</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-coins"></i></span> Money Market Accounts</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-umbrella-beach"></i></span> IRA's</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-briefcase"></i></span> Business Bank Accounts</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-cash-register"></i></span> Merchant Services</a>
                 </div>
             </div>
             <div class="mobile-nav-item" data-menu="borrow">
                 <a href="#" class="mobile-nav-link">Borrow <i class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu">
-                    <a href="#">New & Used Cars</a>
-                    <a href="#">Refinance Existing Auto Loans</a>
-                    <a href="#">Lease Buy Outs</a>
-                    <a href="#">Boat, Motorcycle, & RV</a>
-                    <a href="#">Mortgages</a>
-                    <a href="#">Home Equity Lending</a>
-                    <a href="#">First Time Homebuyers</a>
-                    <a href="#">Credit Card</a>
-                    <a href="#">Personal Loans</a>
-                    <a href="#">Student Loans</a>
-                    <a href="#">Overdraft Protection</a>
-                    <a href="#">Commercial Real Estate</a>
-                    <a href="#">Business Lending</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-car"></i></span> New & Used Cars</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-sync-alt"></i></span> Refinance Existing Auto Loans</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-file-signature"></i></span> Lease Buy Outs</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-ship"></i></span> Boat, Motorcycle, & RV</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-home"></i></span> Mortgages</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-money-check-alt"></i></span> Home Equity Lending</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-key"></i></span> First Time Homebuyers</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-credit-card"></i></span> Credit Card</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-hand-holding-usd"></i></span> Personal Loans</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-graduation-cap"></i></span> Student Loans</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></span> Overdraft Protection</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-city"></i></span> Commercial Real Estate</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span> Business Lending</a>
                 </div>
             </div>
             <div class="mobile-nav-item" data-menu="invest">
                 <a href="#" class="mobile-nav-link">Insure & Invest <i class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu">
-                    <a href="#">Island Financial Services</a>
-                    <a href="#">Life Insurance</a>
-                    <a href="#">ID Theft & More</a>
-                    <a href="#">Auto Insurance</a>
-                    <a href="#">Roadside Assistance</a>
-                    <a href="#">Extended Warranties</a>
-                    <a href="#">Homeowners Insurance</a>
-                    <a href="#">Renters</a>
-                    <a href="#">Pet Insurance</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-home"></i></span> Homeowners Insurance</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-building"></i></span> Renters</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-paw"></i></span> Pet Insurance</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-car-side"></i></span> Auto Insurance</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-road"></i></span> Roadside Assistance</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-tools"></i></span> Extended Warranties</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-heart"></i></span> Life Insurance</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-user-shield"></i></span> ID Theft & More</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-chart-pie"></i></span> Island Financial Services</a>
                 </div>
             </div>
             <div class="mobile-nav-item" data-menu="learn">
                 <a href="#" class="mobile-nav-link">Learn <i class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu">
-                    <a href="#">Becoming a Member</a>
-                    <a href="#">uChoose Rewards</a>
-                    <a href="#">Credit Monitoring</a>
-                    <a href="#">Online Banking</a>
-                    <a href="#">Mobile Banking</a>
-                    <a href="#">Book an Appointment</a>
-                    <a href="#">Make a Loan Payment</a>
-                    <a href="#">Fraud Prevention</a>
-                    <a href="#">Our Story</a>
-                    <a href="#">Island Scholarship</a>
-                    <a href="#">Financial Calculators</a>
-                    <a href="#">Financial Education Blog</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-user-plus"></i></span> Becoming a Member</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-gift"></i></span> uChoose Rewards</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span> Credit Monitoring</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-laptop"></i></span> Online Banking</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-mobile-alt"></i></span> Mobile Banking</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Courtesy Banking &amp; ATM's</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-calendar-check"></i></span> Book an Appointment</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-money-bill-wave"></i></span> Make a Loan Payment</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-lock"></i></span> Fraud Prevention</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-info-circle"></i></span> Our Story</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-award"></i></span> Island Scholarship</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-newspaper"></i></span> Newsletter</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-book"></i></span> Annual Report</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-calendar"></i></span> Events</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-podcast"></i></span> Making Cents Podcast</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-blog"></i></span> Financial Education Blog</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-calculator"></i></span> Financial Calculators</a>
                 </div>
             </div>
             <div class="mobile-nav-item" data-menu="locations">
                 <a href="#" class="mobile-nav-link">Locations <i class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu">
-                    <a href="#">Bellmore</a>
-                    <a href="#">Hicksville</a>
-                    <a href="#">Massapequa</a>
-                    <a href="#">East Setauket</a>
-                    <a href="#">Hauppauge</a>
-                    <a href="#">Sayville</a>
-                    <a href="#">Selden</a>
-                    <a href="#">Riverhead</a>
-                    <a href="#">Find a Courtesy Banking Location</a>
-                    <a href="#">Find a Fee-Free ATM</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Bellmore</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Hicksville</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Massapequa</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> East Setauket</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Hauppauge</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Sayville</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Selden</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Riverhead</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-search-location"></i></span> Find a Courtesy Banking Location</a>
+                    <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-money-bill"></i></span> Find a Fee-Free ATM</a>
                 </div>
             </div>
         </div>
