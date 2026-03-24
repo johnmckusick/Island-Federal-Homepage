@@ -2402,7 +2402,7 @@
 
         .member-spotlight-track {
             display: flex;
-            gap: 28px;
+            gap: 14px;
             transition: transform 0.6s ease-in-out;
         }
 
@@ -2411,8 +2411,8 @@
             min-width: 0;
             display: grid;
             grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-            gap: 28px;
-            align-items: start;
+            gap: 48px;
+            align-items: center;
             padding: 0;
         }
 
@@ -2424,8 +2424,7 @@
 
         .member-spotlight-content {
             min-width: 0;
-            max-width: 70%;
-            padding-top: 6px;
+            max-width: 49%;
         }
 
         .member-spotlight-image img {
@@ -3640,7 +3639,7 @@
             .member-spotlight-section { padding: 60px 0; }
             .member-spotlight-header h2 { font-size: 32px; }
             .member-spotlight-slide { grid-template-columns: 1fr; gap: 32px; align-items: center; }
-            .member-spotlight-content { max-width: 100%; padding-top: 0; }
+            .member-spotlight-content { max-width: 100%; }
             .member-spotlight-image { max-width: none; }
             .member-spotlight-image img { max-width: none; height: 300px; }
             .member-spotlight-content { text-align: center; }
@@ -5778,7 +5777,7 @@
             let currentSlide = 0;
             const totalSlides = 3;
             const peekMq = window.matchMedia('(min-width: 1025px)');
-            const trackGap = 28;
+            const trackGap = 14;
 
             // Touch variables
             let touchStartX = 0;
@@ -5790,7 +5789,7 @@
                 const carousel = track.parentElement;
                 if (!carousel) return;
                 const w = carousel.clientWidth;
-                const peek = peekMq.matches ? 148 : 0;
+                const peek = peekMq.matches ? 168 : 0;
                 const slideW = Math.max(0, w - peek);
                 track.querySelectorAll('.member-spotlight-slide').forEach(function (slide) {
                     slide.style.flex = '0 0 ' + slideW + 'px';
@@ -5803,7 +5802,7 @@
                 const carousel = track && track.parentElement;
                 if (!carousel || !track) return;
                 const w = carousel.clientWidth;
-                const peek = peekMq.matches ? 148 : 0;
+                const peek = peekMq.matches ? 168 : 0;
                 const slideW = Math.max(0, w - peek);
                 var offset = currentSlide * (slideW + trackGap);
                 track.style.transform = 'translateX(-' + offset + 'px)';
