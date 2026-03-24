@@ -2209,12 +2209,16 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: var(--shadow-xl);
+            line-height: 0;
+            background: #1a2d45;
         }
 
         .community-main-image img {
+            display: block;
             width: 100%;
             height: 500px;
             object-fit: cover;
+            object-position: center bottom;
         }
 
         .community-badge {
@@ -2378,23 +2382,27 @@
 
         .member-spotlight-carousel {
             position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
         .member-spotlight-track {
             display: flex;
+            gap: 28px;
             transition: transform 0.6s ease-in-out;
         }
 
         .member-spotlight-slide {
-            min-width: 100%;
+            flex: 0 0 100%;
+            min-width: 0;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 60px;
             align-items: center;
-            padding: 0 20px;
+            padding: 0;
         }
 
         .member-spotlight-image {
@@ -4981,7 +4989,7 @@
         <div class="container">
             <div class="stats-container">
                 <div class="stats-header">
-                    <span class="section-label"><i class="fas fa-chart-line"></i> By The Numbers</span>
+                    <span class="section-label">By The Numbers</span>
                     <h2>Our Impact <span>Speaks for Itself</span></h2>
                     <p>Every number tells a story of members helped, dreams funded, and a community strengthened.</p>
                 </div>
@@ -5108,7 +5116,7 @@
                 </div>
 
                 <div class="community-content">
-                    <span class="section-label"><i class="fas fa-heart"></i> Rooted in Community</span>
+                    <span class="section-label">Rooted in Community</span>
                     <h2>Proudly Serving <span>Long Island</span> Since 1960</h2>
                     <p>We're not just a financial institution — we're your neighbors. From Montauk to Brooklyn, Island Federal has been helping Long Islanders achieve their financial dreams for over 65 years.</p>
 
@@ -5161,7 +5169,7 @@
     <section class="member-spotlight-section">
         <div class="container">
             <div class="member-spotlight-header">
-                <span class="section-label"><i class="fas fa-heart"></i> Community Voices</span>
+                <span class="section-label">Community Voices</span>
                 <h2>Real Members, <span>Real Stories</span></h2>
                 <p>Hear from your neighbors about how Island Federal helped them achieve their financial goals.</p>
             </div>
@@ -5234,7 +5242,7 @@
     <section class="map-section" id="map-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-label"><i class="fas fa-map-marker-alt"></i> Our Locations</span>
+                <span class="section-label">Our Locations</span>
                 <h2 class="section-title">Find a Branch Near You</h2>
                 <p class="section-subtitle">With 9 branches across Long Island and Brooklyn, plus access to 125,000+ fee-free ATMs, we're always nearby.</p>
             </div>
@@ -5304,7 +5312,7 @@
         <div class="container">
             <div class="blog-header">
                 <div class="blog-header-left">
-                    <span class="section-label"><i class="fas fa-newspaper"></i> Financial Insights</span>
+                    <span class="section-label">Financial Insights</span>
                     <h2>Latest from <span>Our Blog</span></h2>
                 </div>
                 <div class="blog-header-right">
@@ -5732,15 +5740,36 @@
             const nextBtn = document.querySelector('.member-next');
             let currentSlide = 0;
             const totalSlides = 3;
-            
+            const peekMq = window.matchMedia('(min-width: 992px)');
+            const trackGap = 28;
+
             // Touch variables
             let touchStartX = 0;
             let touchEndX = 0;
             const minSwipeDistance = 50;
 
+            function layoutMemberSpotlight() {
+                if (!track) return;
+                const carousel = track.parentElement;
+                if (!carousel) return;
+                const w = carousel.clientWidth;
+                const peek = peekMq.matches ? 72 : 0;
+                const slideW = Math.max(0, w - peek);
+                track.querySelectorAll('.member-spotlight-slide').forEach(function (slide) {
+                    slide.style.flex = '0 0 ' + slideW + 'px';
+                });
+                goToSlide(currentSlide);
+            }
+
             function goToSlide(index) {
                 currentSlide = index;
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                const carousel = track && track.parentElement;
+                if (!carousel || !track) return;
+                const w = carousel.clientWidth;
+                const peek = peekMq.matches ? 72 : 0;
+                const slideW = Math.max(0, w - peek);
+                var offset = currentSlide * (slideW + trackGap);
+                track.style.transform = 'translateX(-' + offset + 'px)';
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentSlide);
                 });
@@ -5784,6 +5813,16 @@
                     goToSlide(parseInt(this.getAttribute('data-slide')));
                 });
             });
+
+            layoutMemberSpotlight();
+            window.addEventListener('resize', function () {
+                layoutMemberSpotlight();
+            });
+            if (typeof peekMq.addEventListener === 'function') {
+                peekMq.addEventListener('change', layoutMemberSpotlight);
+            } else if (typeof peekMq.addListener === 'function') {
+                peekMq.addListener(layoutMemberSpotlight);
+            }
         })();
 
         // Blog Carousel Navigation with touch support
