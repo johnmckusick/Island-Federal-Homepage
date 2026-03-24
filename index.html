@@ -1253,6 +1253,17 @@
             z-index: 1;
         }
 
+        /* Savings slide: keep subjects’ heads in frame under wide “cover” crops */
+        .hero-bg[data-hero-bg="2"] {
+            background-position: 72% 28%;
+        }
+
+        @media (max-width: 900px) {
+            .hero-bg[data-hero-bg="2"] {
+                background-position: 65% 22%;
+            }
+        }
+
         .hero-section::before {
             content: '';
             position: absolute;
@@ -1350,12 +1361,8 @@
             transition: opacity 0.2s ease;
         }
 
-        .hero-bullet:hover .hero-bullet-dot {
+        .hero-bullet:not(.is-active):hover .hero-bullet-dot {
             background: rgba(255, 255, 255, 0.5);
-        }
-
-        .hero-bullet.is-active:hover .hero-bullet-dot {
-            background: rgba(255, 255, 255, 0.24);
         }
 
         .hero-bullet:focus-visible {
@@ -1387,7 +1394,8 @@
             width: 100%;
             height: 100%;
             border-radius: inherit;
-            background: rgba(255, 255, 255, 0.95);
+            /* Slightly cooler white so sweep reads on the light pill */
+            background: linear-gradient(90deg, #ffffff 0%, #e8f6ff 100%);
             transform: scaleX(0);
             transform-origin: left center;
             opacity: 0;
@@ -1400,16 +1408,21 @@
             opacity: 0;
         }
 
+        /* Solid light pill when selected; ::after adds timed sweep on top */
         .hero-bullet.is-active .hero-bullet-dot {
             width: 26px;
             height: 6px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.88);
         }
 
         .hero-bullet.is-active.is-progressing .hero-bullet-dot::after {
             opacity: 1;
             animation: heroBulletFill var(--hero-slide-ms) linear forwards;
+        }
+
+        .hero-bullet.is-active:hover .hero-bullet-dot {
+            background: rgba(255, 255, 255, 0.82);
         }
 
         #heroSlider.is-paused .hero-bullet.is-active.is-progressing .hero-bullet-dot::after {
@@ -4566,7 +4579,7 @@
         <div class="hero-backgrounds" aria-hidden="true">
             <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
             <div class="hero-bg" data-hero-bg="1" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
-            <div class="hero-bg" data-hero-bg="2" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
+            <div class="hero-bg" data-hero-bg="2" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;crop=faces&amp;w=2000&amp;h=1350&amp;q=80');"></div>
         </div>
         <div class="container-wide hero-inner">
             <div class="hero-contents">
@@ -4574,7 +4587,7 @@
                     <div class="hero-panel is-active" id="hero-slide-0" data-hero-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 3: Mortgages" aria-hidden="false">
                         <div class="hero-content">
                             <div class="hero-badge">
-                                <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                                <i class="fas fa-home" aria-hidden="true"></i> Mortgages &amp; home loans
                             </div>
                             <h1 class="hero-headline">The Key to Your <span>New Home</span></h1>
                             <p class="hero-description">Local mortgage decisions, first-time buyer programs, and rates that compete with anyone—plus a team that answers the phone when you call.</p>
@@ -4587,7 +4600,7 @@
                     <div class="hero-panel" id="hero-slide-1" data-hero-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 3: Auto loans" aria-hidden="true">
                         <div class="hero-content">
                             <div class="hero-badge">
-                                <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                                <i class="fas fa-car" aria-hidden="true"></i> Auto loans &amp; refinancing
                             </div>
                             <h2 class="hero-headline">Rates That <span>Move You</span></h2>
                             <p class="hero-description">New, used, or refinance—get pre-approved in minutes. Not-for-profit pricing means more car for your payment, not more profit for Wall Street.</p>
@@ -4600,7 +4613,7 @@
                     <div class="hero-panel" id="hero-slide-2" data-hero-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 3: Savings" aria-hidden="true">
                         <div class="hero-content">
                             <div class="hero-badge">
-                                <i class="fas fa-shield-alt"></i> Federally Insured by NCUA
+                                <i class="fas fa-piggy-bank" aria-hidden="true"></i> Savings &amp; certificates
                             </div>
                             <h2 class="hero-headline">Your Money, <span>Working Harder</span></h2>
                             <p class="hero-description">High-yield savings and certificates that actually reward you. Same NCUA insurance as the big banks—typically better APYs because we answer to members, not shareholders.</p>
@@ -5457,6 +5470,24 @@
 
             root.style.setProperty('--hero-slide-ms', SLIDE_MS + 'ms');
 
+            /* Ignore hero hover until after load — pointer resting on hero fires mouseenter and paused animation at 0% */
+            var heroHoverPauseEnabled = false;
+            setTimeout(function () {
+                heroHoverPauseEnabled = true;
+            }, 650);
+
+            function restartHeroBulletProgress(btn) {
+                if (!btn || reduceMotion) return;
+                var dot = btn.querySelector('.hero-bullet-dot');
+                btn.classList.remove('is-progressing');
+                if (dot) {
+                    void dot.offsetWidth;
+                } else {
+                    void btn.offsetWidth;
+                }
+                btn.classList.add('is-progressing');
+            }
+
             function setBullets(activeIndex) {
                 bullets.forEach(function (btn, i) {
                     btn.classList.remove('is-progressing');
@@ -5464,12 +5495,7 @@
                     btn.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
                 });
                 if (!reduceMotion && bullets[activeIndex]) {
-                    var activeBtn = bullets[activeIndex];
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            activeBtn.classList.add('is-progressing');
-                        });
-                    });
+                    restartHeroBulletProgress(bullets[activeIndex]);
                 }
             }
 
@@ -5504,6 +5530,7 @@
             });
 
             root.addEventListener('mouseenter', function () {
+                if (!heroHoverPauseEnabled) return;
                 root.classList.add('is-paused');
                 if (timer) clearInterval(timer);
             });
@@ -5511,16 +5538,7 @@
                 root.classList.remove('is-paused');
                 if (reduceMotion) return;
                 if (timer) clearInterval(timer);
-                var active = bullets[current];
-                if (active) {
-                    active.classList.remove('is-progressing');
-                    void active.offsetWidth;
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            active.classList.add('is-progressing');
-                        });
-                    });
-                }
+                restartHeroBulletProgress(bullets[current]);
                 timer = setInterval(function () {
                     goToSlide((current + 1) % n);
                 }, SLIDE_MS);
