@@ -741,7 +741,7 @@
             text-decoration: underline;
         }
 
-        /* Enroll — headline, proof points, strong CTA */
+        /* Enroll: headline, proof points, strong CTA */
         .login-panel-enroll-promo {
             margin-top: auto;
             margin-left: -28px;
@@ -1103,7 +1103,7 @@
 
         .promo-link:hover { gap: 10px; color: white; }
 
-        /* --- PROMO CAROUSEL BANNER (hidden for now — re-enable by removing display:none) --- */
+        /* --- PROMO CAROUSEL BANNER (hidden for now; re-enable by removing display:none) --- */
         .promo-carousel-banner {
             display: none;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
@@ -1263,7 +1263,7 @@
             z-index: 1;
         }
 
-        /* Local hero photos — bias focal point for left-aligned copy */
+        /* Local hero photos: bias focal point for left-aligned copy */
         .hero-bg[data-hero-bg="0"] {
             background-position: 70% center;
         }
@@ -1315,7 +1315,7 @@
             padding-bottom: 100px;
         }
 
-        /* Stack slides in one grid cell so row height = tallest slide — bullets sit below CTAs */
+        /* Stack slides in one grid cell so row height = tallest slide; bullets sit below CTAs */
         .hero-contents {
             display: flex;
             flex-direction: column;
@@ -2345,7 +2345,7 @@
         .member-spotlight-section {
             padding: 80px 0;
             background: linear-gradient(180deg, white 0%, var(--light-bg) 100%);
-            overflow: hidden;
+            overflow: visible;
         }
 
         .member-spotlight-header {
@@ -2380,13 +2380,24 @@
             margin: 0 auto;
         }
 
+        /* Full-bleed right: align left with .container content; extend to viewport edge */
+        .member-spotlight-carousel-bleed {
+            width: 100vw;
+            max-width: none;
+            margin-left: calc(50% - 50vw);
+            padding-left: max(24px, calc((100vw - 1280px) / 2 + 24px));
+            padding-right: 0;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+
         .member-spotlight-carousel {
             position: relative;
             width: 100%;
             max-width: none;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .member-spotlight-track {
@@ -2399,21 +2410,29 @@
             flex: 0 0 100%;
             min-width: 0;
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
+            grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
+            gap: 36px 48px;
             align-items: center;
             padding: 0;
         }
 
         .member-spotlight-image {
             position: relative;
+            max-width: 300px;
+            justify-self: start;
+        }
+
+        .member-spotlight-content {
+            min-width: 0;
         }
 
         .member-spotlight-image img {
+            display: block;
             width: 100%;
-            height: 450px;
+            max-width: 300px;
+            height: 360px;
             object-fit: cover;
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: var(--shadow-xl);
         }
 
@@ -2430,11 +2449,11 @@
 
         .member-spotlight-quote {
             font-family: 'Inter', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 400;
             color: var(--navy-text);
-            line-height: 1.6;
-            margin-bottom: 32px;
+            line-height: 1.55;
+            margin-bottom: 28px;
         }
 
         .member-spotlight-author {
@@ -3619,7 +3638,8 @@
             .member-spotlight-section { padding: 60px 0; }
             .member-spotlight-header h2 { font-size: 32px; }
             .member-spotlight-slide { grid-template-columns: 1fr; gap: 32px; }
-            .member-spotlight-image img { height: 320px; }
+            .member-spotlight-image { max-width: none; }
+            .member-spotlight-image img { max-width: none; height: 300px; }
             .member-spotlight-content { text-align: center; }
             .member-spotlight-product { justify-content: center; }
             .member-spotlight-quote { font-size: 20px; text-align: center; }
@@ -3687,7 +3707,7 @@
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
-            /* Quick Access Rates — horizontal tab scroll + detail stack (headline → rates → CTAs) */
+            /* Quick Access Rates: horizontal tab scroll + detail stack (headline → rates → CTAs) */
             .quick-rates-section { padding: 56px 0; }
             .rates-selection-hint {
                 display: block;
@@ -3780,7 +3800,7 @@
                 justify-content: flex-start;
             }
             
-            /* Stats — compact 2×2 on small phones */
+            /* Stats: compact 2×2 on small phones */
             .stats-section { padding: 56px 0; }
             .stats-header { margin-bottom: 32px; }
             .stats-header h2 { font-size: 30px; }
@@ -3876,9 +3896,15 @@
             .member-spotlight-header { margin-bottom: 32px; }
             .member-spotlight-header h2 { font-size: 28px; }
             .member-spotlight-header p { font-size: 14px; }
+            .member-spotlight-carousel-bleed {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
             .member-spotlight-carousel { overflow: hidden; touch-action: pan-x; }
             .member-spotlight-track { touch-action: pan-x; }
-            .member-spotlight-slide { grid-template-columns: 1fr; gap: 24px; padding: 0 16px; }
+            .member-spotlight-slide { grid-template-columns: 1fr; gap: 24px; padding: 0; }
             .member-spotlight-image img { height: 280px; }
             .member-spotlight-content { text-align: center; }
             .member-spotlight-product { justify-content: center; }
@@ -3996,7 +4022,7 @@
             .hero-bullet.is-active .hero-bullet-dot { width: 22px; height: 5px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
             
-            /* Quick Access Rates — keep horizontal scroll (inherit 768); tighten */
+            /* Quick Access Rates: keep horizontal scroll (inherit 768); tighten */
             .quick-rates-section { padding: 40px 0; }
             .quick-rates-header h2 { font-size: 24px; }
             .quick-rates-header p { font-size: 13px; }
@@ -4023,7 +4049,7 @@
             .rate-content-footer { margin-top: 16px; }
             .btn-view-all-rates { font-size: 13px; }
             
-            /* Stats — stay 2×2 */
+            /* Stats: stay 2×2 */
             .stats-section { padding: 48px 0; }
             .stats-header { margin-bottom: 40px; }
             .stats-header h2 { font-size: 26px; }
@@ -4057,7 +4083,7 @@
             .advantage-card h3 { font-size: 18px; }
             .advantage-card p { font-size: 13px; }
             
-            /* Community — left-aligned + 2×2 features */
+            /* Community: left-aligned + 2×2 features */
             .community-section { padding: 40px 0; }
             .community-grid { grid-template-columns: 1fr; gap: 0; }
             .community-images { order: 1; margin-bottom: 50px; }
@@ -4465,7 +4491,7 @@
         </div>
     </header>
 
-    <!-- Online banking login — slides in from right (full height) -->
+    <!-- Online banking login: slides in from right (full height) -->
     <!-- IFCU homepage deploy fingerprint: search View Source for "IFCU-deploy" to confirm latest build is live -->
     <div class="login-panel-overlay" id="loginPanelOverlay" aria-hidden="true"></div>
     <div class="login-panel" id="loginPanel" role="dialog" aria-modal="true" aria-labelledby="loginPanelTitle">
@@ -4490,7 +4516,7 @@
                     <p class="login-panel-enroll-kicker">Why Island Federal</p>
                     <h4 class="login-panel-enroll-title" id="loginPanelEnrollHeading">You’re More Than an Account Number.</h4>
                     <ul class="login-panel-enroll-points" aria-label="Member benefits">
-                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>Not-for-profit—we reinvest in you, not shareholders.</span></li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> <span>As a not-for-profit, we reinvest in you, not shareholders.</span></li>
                         <li><i class="fas fa-check" aria-hidden="true"></i> <span>Strong rates &amp; fewer fees, built for Long Island.</span></li>
                         <li><i class="fas fa-check" aria-hidden="true"></i> <span>Deposits federally insured by NCUA.</span></li>
                     </ul>
@@ -4603,12 +4629,12 @@
 
         <div class="mobile-login-section">
             <h4>Online Banking</h4>
-            <p class="mobile-login-section-desc">Tap below for the full experience—same as the Login button in the header (sign in, password help, enroll).</p>
+            <p class="mobile-login-section-desc">Tap below for the full experience, the same as the Login button in the header (sign in, password help, enroll).</p>
             <button type="button" class="mobile-login-section-open" data-open-login-panel>Open Online Banking</button>
         </div>
     </div>
 
-    <!-- HERO SECTION — 3-slide product spotlight -->
+    <!-- HERO SECTION: 3-slide product spotlight -->
     <section class="hero-section" id="heroSlider" aria-roledescription="carousel" aria-label="Featured products and offers">
         <div class="hero-backgrounds" aria-hidden="true">
             <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('images/hero/hero-mortgage.jpg');"></div>
@@ -4624,7 +4650,7 @@
                                 <i class="fas fa-home" aria-hidden="true"></i> Mortgages &amp; Home Loans
                             </div>
                             <h1 class="hero-headline">The Key to Your <span>New Home</span></h1>
-                            <p class="hero-description">Local mortgage decisions, first-time buyer programs, and rates that compete with anyone—plus a team that answers the phone when you call.</p>
+                            <p class="hero-description">Local mortgage decisions, first-time buyer programs, and rates that compete with anyone, plus a team that answers the phone when you call.</p>
                             <div class="hero-cta-group">
                                 <a href="#" class="btn-primary">Get Pre-Approved <i class="fas fa-arrow-right"></i></a>
                                 <a href="#" class="btn-secondary"><i class="fas fa-home"></i> Mortgage Rates</a>
@@ -4637,7 +4663,7 @@
                                 <i class="fas fa-car" aria-hidden="true"></i> Auto Loans &amp; Refinancing
                             </div>
                             <h2 class="hero-headline">Rates That <span>Move You</span></h2>
-                            <p class="hero-description">New, used, or refinance—get pre-approved in minutes. Not-for-profit pricing means more car for your payment, not more profit for Wall Street.</p>
+                            <p class="hero-description">New, used, or refinance: get pre-approved in minutes. Not-for-profit pricing means more car for your payment, not more profit for Wall Street.</p>
                             <div class="hero-cta-group">
                                 <a href="#" class="btn-primary">Apply for Auto Loan <i class="fas fa-arrow-right"></i></a>
                                 <a href="#" class="btn-secondary"><i class="fas fa-car"></i> Auto Loan Rates</a>
@@ -4650,7 +4676,7 @@
                                 <i class="fas fa-piggy-bank" aria-hidden="true"></i> Savings &amp; Certificates
                             </div>
                             <h2 class="hero-headline">Your Money, <span>Working Harder</span></h2>
-                            <p class="hero-description">High-yield savings and certificates that actually reward you. Same NCUA insurance as the big banks—typically better APYs because we answer to members, not shareholders.</p>
+                            <p class="hero-description">High-yield savings and certificates that actually reward you. Same NCUA insurance as the big banks, with typically better APYs because we answer to members, not shareholders.</p>
                             <div class="hero-cta-group">
                                 <a href="#" class="btn-primary">See Deposit Rates <i class="fas fa-arrow-right"></i></a>
                                 <a href="#" class="btn-secondary"><i class="fas fa-piggy-bank"></i> Open an Account</a>
@@ -4811,7 +4837,7 @@
                 </div>
             </div>
 
-            <p class="rates-selection-hint">Tap a product — rates and actions update directly below.</p>
+            <p class="rates-selection-hint">Tap a product: rates and actions update directly below.</p>
 
             <div class="rate-content-area active" id="auto-content">
                 <div class="rate-content-grid">
@@ -5076,7 +5102,7 @@
                     </div>
                     <div class="advantage-card-content">
                         <h3>Personal Service</h3>
-                        <p>Talk to real people who care about your financial success — not automated phone trees or chat bots.</p>
+                        <p>Talk to real people who care about your financial success, not automated phone trees or chat bots.</p>
                         <a href="#" class="advantage-card-link">Contact Us <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -5086,7 +5112,7 @@
                     </div>
                     <div class="advantage-card-content">
                         <h3>Federally Insured</h3>
-                        <p>Your deposits are protected up to $250,000 by the NCUA — the same coverage as any national bank.</p>
+                        <p>Your deposits are protected up to $250,000 by the NCUA, the same coverage as any national bank.</p>
                         <a href="#" class="advantage-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -5118,7 +5144,7 @@
                 <div class="community-content">
                     <span class="section-label">Rooted in Community</span>
                     <h2>Proudly Serving <span>Long Island</span> Since 1960</h2>
-                    <p>We're not just a financial institution — we're your neighbors. From Montauk to Brooklyn, Island Federal has been helping Long Islanders achieve their financial dreams for over 65 years.</p>
+                    <p>We're not just a financial institution; we're your neighbors. From Montauk to Brooklyn, Island Federal has been helping Long Islanders achieve their financial dreams for over 65 years.</p>
 
                     <div class="community-features">
                         <div class="community-feature">
@@ -5173,12 +5199,13 @@
                 <h2>Real Members, <span>Real Stories</span></h2>
                 <p>Hear from your neighbors about how Island Federal helped them achieve their financial goals.</p>
             </div>
-
+        </div>
+        <div class="member-spotlight-carousel-bleed">
             <div class="member-spotlight-carousel">
                 <div class="member-spotlight-track" id="memberSpotlightTrack">
                     <div class="member-spotlight-slide">
                         <div class="member-spotlight-image">
-                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Amanda P.">
+                            <img src="images/testimonials/home-loan-member.png" alt="Couple receiving keys to their new home from a realtor">
                         </div>
                         <div class="member-spotlight-content">
                             <span class="member-spotlight-product">Home Loan Member</span>
@@ -5194,7 +5221,7 @@
 
                     <div class="member-spotlight-slide">
                         <div class="member-spotlight-image">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ryan D.">
+                            <img src="images/testimonials/auto-loan-member.png" alt="Happy couple with new car keys at the dealership">
                         </div>
                         <div class="member-spotlight-content">
                             <span class="member-spotlight-product">Auto Loan Member</span>
@@ -5504,7 +5531,7 @@
 
             root.style.setProperty('--hero-slide-ms', SLIDE_MS + 'ms');
 
-            /* Ignore hero hover until after load — pointer resting on hero fires mouseenter and paused animation at 0% */
+            /* Ignore hero hover until after load: pointer resting on hero fires mouseenter and paused animation at 0% */
             var heroHoverPauseEnabled = false;
             setTimeout(function () {
                 heroHoverPauseEnabled = true;
@@ -5740,7 +5767,7 @@
             const nextBtn = document.querySelector('.member-next');
             let currentSlide = 0;
             const totalSlides = 3;
-            const peekMq = window.matchMedia('(min-width: 992px)');
+            const peekMq = window.matchMedia('(min-width: 1025px)');
             const trackGap = 28;
 
             // Touch variables
@@ -5753,7 +5780,7 @@
                 const carousel = track.parentElement;
                 if (!carousel) return;
                 const w = carousel.clientWidth;
-                const peek = peekMq.matches ? 72 : 0;
+                const peek = peekMq.matches ? 148 : 0;
                 const slideW = Math.max(0, w - peek);
                 track.querySelectorAll('.member-spotlight-slide').forEach(function (slide) {
                     slide.style.flex = '0 0 ' + slideW + 'px';
@@ -5766,7 +5793,7 @@
                 const carousel = track && track.parentElement;
                 if (!carousel || !track) return;
                 const w = carousel.clientWidth;
-                const peek = peekMq.matches ? 72 : 0;
+                const peek = peekMq.matches ? 148 : 0;
                 const slideW = Math.max(0, w - peek);
                 var offset = currentSlide * (slideW + trackGap);
                 track.style.transform = 'translateX(-' + offset + 'px)';
