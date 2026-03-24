@@ -967,7 +967,7 @@
             margin-right: auto;
         }
         .mega-menu-locations .mega-grid-3 {
-            grid-template-columns: max-content max-content max-content;
+            grid-template-columns: max-content max-content max-content max-content;
             gap: 24px;
             justify-items: start;
         }
@@ -2410,9 +2410,9 @@
             flex: 0 0 100%;
             min-width: 0;
             display: grid;
-            grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
-            gap: 36px 48px;
-            align-items: center;
+            grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
             padding: 0;
         }
 
@@ -2424,6 +2424,8 @@
 
         .member-spotlight-content {
             min-width: 0;
+            max-width: 70%;
+            padding-top: 6px;
         }
 
         .member-spotlight-image img {
@@ -3637,7 +3639,8 @@
             /* Member Spotlight Carousel */
             .member-spotlight-section { padding: 60px 0; }
             .member-spotlight-header h2 { font-size: 32px; }
-            .member-spotlight-slide { grid-template-columns: 1fr; gap: 32px; }
+            .member-spotlight-slide { grid-template-columns: 1fr; gap: 32px; align-items: center; }
+            .member-spotlight-content { max-width: 100%; padding-top: 0; }
             .member-spotlight-image { max-width: none; }
             .member-spotlight-image img { max-width: none; height: 300px; }
             .member-spotlight-content { text-align: center; }
@@ -4444,6 +4447,12 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Riverhead</a></li>
                                             </ul>
                                         </div>
+                                        <div>
+                                            <h4 class="col-header">Brooklyn</h4>
+                                            <ul class="menu-list">
+                                                <li><a href="#map-section"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Brooklyn</a></li>
+                                            </ul>
+                                        </div>
                                         <div class="mega-locations-courtesy">
                                             <div class="mega-locations-courtesy-links">
                                                 <h4 class="col-header">Courtesy Banking</h4>
@@ -4455,7 +4464,7 @@
                                             <div class="promo-box">
                                                 <div class="promo-box-icon"><i class="fas fa-map-marked-alt"></i></div>
                                                 <h4 class="promo-title">Find Us</h4>
-                                                <p class="promo-desc">Visit any of our 8 branches across Long Island.</p>
+                                                <p class="promo-desc">Visit any of our 9 branches across Long Island and Brooklyn.</p>
                                                 <a href="#map-section" class="promo-link">View Map <i class="fas fa-arrow-right"></i></a>
                                             </div>
                                         </div>
@@ -4616,6 +4625,7 @@
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Sayville</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Selden</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Riverhead</a>
+                    <a href="#map-section"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Brooklyn</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-search-location"></i></span> Find a Courtesy Banking Location</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-money-bill"></i></span> Find a Fee-Free ATM</a>
                 </div>
