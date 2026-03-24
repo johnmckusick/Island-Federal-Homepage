@@ -1263,14 +1263,30 @@
             z-index: 1;
         }
 
-        /* Savings slide: keep subjects’ heads in frame under wide “cover” crops */
+        /* Local hero photos — bias focal point for left-aligned copy */
+        .hero-bg[data-hero-bg="0"] {
+            background-position: 70% center;
+        }
+
+        .hero-bg[data-hero-bg="1"] {
+            background-position: 58% center;
+        }
+
         .hero-bg[data-hero-bg="2"] {
-            background-position: 72% 28%;
+            background-position: 56% 32%;
         }
 
         @media (max-width: 900px) {
+            .hero-bg[data-hero-bg="0"] {
+                background-position: 62% center;
+            }
+
+            .hero-bg[data-hero-bg="1"] {
+                background-position: 52% center;
+            }
+
             .hero-bg[data-hero-bg="2"] {
-                background-position: 65% 22%;
+                background-position: 50% 28%;
             }
         }
 
@@ -4587,9 +4603,9 @@
     <!-- HERO SECTION — 3-slide product spotlight -->
     <section class="hero-section" id="heroSlider" aria-roledescription="carousel" aria-label="Featured products and offers">
         <div class="hero-backgrounds" aria-hidden="true">
-            <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
-            <div class="hero-bg" data-hero-bg="1" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');"></div>
-            <div class="hero-bg" data-hero-bg="2" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;crop=faces&amp;w=2000&amp;h=1350&amp;q=80');"></div>
+            <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('images/hero/hero-mortgage.jpg');"></div>
+            <div class="hero-bg" data-hero-bg="1" style="background-image: url('images/hero/hero-auto.jpg');"></div>
+            <div class="hero-bg" data-hero-bg="2" style="background-image: url('images/hero/hero-savings.jpg');"></div>
         </div>
         <div class="container-wide hero-inner">
             <div class="hero-contents">
