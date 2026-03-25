@@ -316,7 +316,7 @@
             min-width: 0;
         }
 
-        /* Align “Contact Us” with “Bank” (nav-row 30px + .nav-link horizontal padding 14px) */
+        /* Align “Contact Us” with “Bank” (nav-row 30px + .nav-link horizontal padding) */
         .header-utilities-left > :first-child {
             margin-left: 14px;
         }
@@ -435,7 +435,7 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 8px;
+            gap: 18px;
             margin-right: auto;
         }
 
@@ -449,7 +449,7 @@
             color: var(--navy-text);
             font-weight: 500;
             font-size: 17px;
-            padding: 16px 14px;
+            padding: 16px 20px;
             border-bottom: 3px solid transparent;
             transition: all 0.2s;
         }
@@ -967,7 +967,7 @@
             margin-right: auto;
         }
         .mega-menu-locations .mega-grid-3 {
-            grid-template-columns: max-content max-content max-content max-content;
+            grid-template-columns: max-content max-content max-content;
             gap: 24px;
             justify-items: start;
         }
@@ -1268,12 +1268,13 @@
             background-position: 70% center;
         }
 
+        /* Auto: anchor higher in frame so faces stay in view */
         .hero-bg[data-hero-bg="1"] {
-            background-position: 58% center;
+            background-position: 54% 18%;
         }
 
         .hero-bg[data-hero-bg="2"] {
-            background-position: 56% 32%;
+            background-position: 52% 38%;
         }
 
         @media (max-width: 900px) {
@@ -1282,11 +1283,11 @@
             }
 
             .hero-bg[data-hero-bg="1"] {
-                background-position: 52% center;
+                background-position: 50% 12%;
             }
 
             .hero-bg[data-hero-bg="2"] {
-                background-position: 50% 28%;
+                background-position: 48% 34%;
             }
         }
 
@@ -1358,19 +1359,66 @@
             padding: 0;
         }
 
-        /* Sleek carousel nav: tight dots + pill; active shows timed fill */
+        /* Hero carousel: dots (pill active) + outlined prev/next */
         #heroSlider {
             --hero-slide-ms: 4200ms;
         }
 
+        .hero-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            width: 100%;
+            max-width: 700px;
+            flex-shrink: 0;
+            margin: 0;
+            padding: 4px 0;
+        }
+
         .hero-progress {
             display: flex;
-            gap: 4px;
+            gap: 10px;
             align-items: center;
             justify-content: flex-start;
             flex-shrink: 0;
             margin: 0;
-            padding: 4px 0;
+            padding: 0;
+        }
+
+        .hero-nav-arrows {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .hero-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 15px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .hero-arrow:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .hero-arrow:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
         }
 
         .hero-bullet {
@@ -1399,10 +1447,10 @@
         .hero-bullet-dot {
             position: relative;
             display: block;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.32);
+            background: rgba(255, 255, 255, 0.28);
             overflow: hidden;
             transition:
                 width 0.5s cubic-bezier(0.2, 0.85, 0.25, 1),
@@ -1434,12 +1482,12 @@
             opacity: 0;
         }
 
-        /* Solid light pill when selected; ::after adds timed sweep on top */
+        /* Solid white pill when selected; ::after adds timed sweep on top */
         .hero-bullet.is-active .hero-bullet-dot {
-            width: 26px;
+            width: 28px;
             height: 6px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .hero-bullet.is-active.is-progressing .hero-bullet-dot::after {
@@ -3428,7 +3476,8 @@
         /* Responsive Breakpoints */
         @media (max-width: 1350px) {
             .container-wide { padding: 0 24px; }
-            .nav-link { padding: 16px 10px; font-size: 16px; }
+            .nav-menu { gap: 12px; }
+            .nav-link { padding: 16px 14px; font-size: 16px; }
             .btn-rates { padding: 8px 16px; font-size: 13px; }
             .btn-header-login { padding: 10px 22px; font-size: 15px; }
             .header-utilities { gap: 8px 12px; padding: 8px 24px 8px 20px; }
@@ -3495,7 +3544,7 @@
             .header-utilities .util-text { font-size: 11px; gap: 6px; }
             .logo-area { padding-right: 24px; }
             .nav-row { padding: 0 24px 0 20px; }
-            .nav-menu { gap: 4px; }
+            .nav-menu { gap: 10px; }
             .nav-quick-actions { gap: 8px; }
         }
 
@@ -3547,7 +3596,8 @@
             .hero-headline { font-size: 42px; }
             .hero-content { max-width: 100%; padding: 0; }
             .hero-description { font-size: 16px; }
-            .hero-progress { gap: 3px; }
+            .hero-nav { gap: 20px; }
+            .hero-progress { gap: 8px; }
             .hero-cta-group { flex-direction: column; align-items: flex-start; }
             .btn-primary, .btn-secondary { width: auto; min-width: 200px; justify-content: center; }
             
@@ -3705,7 +3755,8 @@
             .hero-headline { font-size: 34px; line-height: 1.2; }
             .hero-badge { font-size: 12px; padding: 6px 12px; }
             .hero-description { font-size: 15px; margin-bottom: 32px; max-width: 100%; }
-            .hero-progress { gap: 3px; }
+            .hero-nav { gap: 16px; }
+            .hero-progress { gap: 8px; }
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
@@ -4019,9 +4070,11 @@
             .hero-description { font-size: 14px; margin-bottom: 24px; }
             .hero-content { padding: 0; }
             .hero-cta-group { gap: 12px; }
+            .hero-nav { gap: 14px; }
+            .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
             .hero-bullet { min-width: 28px; height: 36px; padding: 0 3px; }
-            .hero-bullet-dot { width: 5px; height: 5px; }
-            .hero-bullet.is-active .hero-bullet-dot { width: 22px; height: 5px; }
+            .hero-bullet-dot { width: 6px; height: 6px; }
+            .hero-bullet.is-active .hero-bullet-dot { width: 24px; height: 5px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
             
             /* Quick Access Rates: keep horizontal scroll (inherit 768); tighten */
@@ -4446,12 +4499,6 @@
                                                 <li><a href="#"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Riverhead</a></li>
                                             </ul>
                                         </div>
-                                        <div>
-                                            <h4 class="col-header">Brooklyn</h4>
-                                            <ul class="menu-list">
-                                                <li><a href="#map-section"><span class="menu-icon"><i class="fas fa-map-marker-alt"></i></span> Brooklyn</a></li>
-                                            </ul>
-                                        </div>
                                         <div class="mega-locations-courtesy">
                                             <div class="mega-locations-courtesy-links">
                                                 <h4 class="col-header">Courtesy Banking</h4>
@@ -4463,7 +4510,7 @@
                                             <div class="promo-box">
                                                 <div class="promo-box-icon"><i class="fas fa-map-marked-alt"></i></div>
                                                 <h4 class="promo-title">Find Us</h4>
-                                                <p class="promo-desc">Visit any of our 9 branches across Long Island and Brooklyn.</p>
+                                                <p class="promo-desc">Visit any of our 8 branches across Long Island.</p>
                                                 <a href="#map-section" class="promo-link">View Map <i class="fas fa-arrow-right"></i></a>
                                             </div>
                                         </div>
@@ -4624,7 +4671,6 @@
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Sayville</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Selden</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Riverhead</a>
-                    <a href="#map-section"><span class="menu-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span> Brooklyn</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-search-location"></i></span> Find a Courtesy Banking Location</a>
                     <a href="#"><span class="menu-icon" aria-hidden="true"><i class="fas fa-money-bill"></i></span> Find a Fee-Free ATM</a>
                 </div>
@@ -4647,8 +4693,8 @@
     <section class="hero-section" id="heroSlider" aria-roledescription="carousel" aria-label="Featured products and offers">
         <div class="hero-backgrounds" aria-hidden="true">
             <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('images/hero/hero-mortgage.jpg');"></div>
-            <div class="hero-bg" data-hero-bg="1" style="background-image: url('images/hero/hero-auto.jpg');"></div>
-            <div class="hero-bg" data-hero-bg="2" style="background-image: url('images/hero/hero-savings.jpg');"></div>
+            <div class="hero-bg" data-hero-bg="1" style="background-image: url('images/hero/hero-auto.png');"></div>
+            <div class="hero-bg" data-hero-bg="2" style="background-image: url('images/hero/hero-savings.png');"></div>
         </div>
         <div class="container-wide hero-inner">
             <div class="hero-contents">
@@ -4693,16 +4739,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero-progress" role="tablist" aria-label="Choose hero slide">
-                    <button type="button" class="hero-bullet is-active" role="tab" aria-selected="true" aria-controls="hero-slide-0" id="hero-tab-0" data-hero-go="0" title="Mortgages">
-                        <span class="hero-bullet-dot" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="hero-bullet" role="tab" aria-selected="false" aria-controls="hero-slide-1" id="hero-tab-1" data-hero-go="1" title="Auto loans">
-                        <span class="hero-bullet-dot" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="hero-bullet" role="tab" aria-selected="false" aria-controls="hero-slide-2" id="hero-tab-2" data-hero-go="2" title="Savings &amp; CDs">
-                        <span class="hero-bullet-dot" aria-hidden="true"></span>
-                    </button>
+                <div class="hero-nav">
+                    <div class="hero-progress" role="tablist" aria-label="Choose hero slide">
+                        <button type="button" class="hero-bullet is-active" role="tab" aria-selected="true" aria-controls="hero-slide-0" id="hero-tab-0" data-hero-go="0" title="Mortgages">
+                            <span class="hero-bullet-dot" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="hero-bullet" role="tab" aria-selected="false" aria-controls="hero-slide-1" id="hero-tab-1" data-hero-go="1" title="Auto loans">
+                            <span class="hero-bullet-dot" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="hero-bullet" role="tab" aria-selected="false" aria-controls="hero-slide-2" id="hero-tab-2" data-hero-go="2" title="Savings &amp; CDs">
+                            <span class="hero-bullet-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="hero-nav-arrows">
+                        <button type="button" class="hero-arrow hero-arrow-prev" aria-label="Previous slide" data-hero-prev>
+                            <span aria-hidden="true">&lt;</span>
+                        </button>
+                        <button type="button" class="hero-arrow hero-arrow-next" aria-label="Next slide" data-hero-next>
+                            <span aria-hidden="true">&gt;</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -5161,8 +5217,8 @@
                                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
                             <div>
-                                <h4>9 Local Branches</h4>
-                                <p>Across Long Island & Brooklyn</p>
+                                <h4>8 Local Branches</h4>
+                                <p>Across Long Island</p>
                             </div>
                         </div>
                         <div class="community-feature">
@@ -5280,7 +5336,7 @@
             <div class="section-header">
                 <span class="section-label">Our Locations</span>
                 <h2 class="section-title">Find a Branch Near You</h2>
-                <p class="section-subtitle">With 9 branches across Long Island and Brooklyn, plus access to 125,000+ fee-free ATMs, we're always nearby.</p>
+                <p class="section-subtitle">With 8 branches across Long Island, plus access to 125,000+ fee-free ATMs, we're always nearby.</p>
             </div>
 
             <div class="map-wrapper">
@@ -5294,10 +5350,6 @@
                         <li class="location-item" data-branch="bellmore">
                             <div class="location-marker"><i class="fas fa-map-marker-alt"></i></div>
                             <span>Bellmore</span>
-                        </li>
-                        <li class="location-item" data-branch="brooklyn">
-                            <div class="location-marker"><i class="fas fa-map-marker-alt"></i></div>
-                            <span>Brooklyn</span>
                         </li>
                         <li class="location-item" data-branch="eastsetauket">
                             <div class="location-marker"><i class="fas fa-map-marker-alt"></i></div>
@@ -5534,6 +5586,8 @@
             var bgs = root.querySelectorAll('.hero-bg');
             var panels = root.querySelectorAll('.hero-panel');
             var bullets = root.querySelectorAll('.hero-bullet');
+            var prevBtn = root.querySelector('[data-hero-prev]');
+            var nextBtn = root.querySelector('[data-hero-next]');
             var timer = null;
             var current = 0;
             var n = panels.length;
@@ -5598,6 +5652,17 @@
                     if (!isNaN(idx)) goToSlide(idx);
                 });
             });
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    goToSlide((current - 1 + n) % n);
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    goToSlide((current + 1) % n);
+                });
+            }
 
             root.addEventListener('mouseenter', function () {
                 if (!heroHoverPauseEnabled) return;
@@ -6056,7 +6121,6 @@
             const branches = [
                 { id: 'hauppauge', name: 'Hauppauge (Main Office)', address: '120 Motor Parkway, Hauppauge, NY 11788', lat: 40.8156, lng: -73.2134, phone: '631-851-1100', type: 'branch' },
                 { id: 'bellmore', name: 'Bellmore', address: '2752 Sunrise Highway, Bellmore, NY 11710', lat: 40.6687, lng: -73.5268, phone: '631-851-1100', type: 'branch' },
-                { id: 'brooklyn', name: 'Brooklyn', address: '1750 86th Street, Brooklyn, NY 11214', lat: 40.6047, lng: -74.0012, phone: '631-851-1100', type: 'branch' },
                 { id: 'eastsetauket', name: 'East Setauket', address: '430 Route 25A, East Setauket, NY 11733', lat: 40.9312, lng: -73.1068, phone: '631-851-1100', type: 'branch' },
                 { id: 'hicksville', name: 'Hicksville', address: '85 East Old Country Road, Hicksville, NY 11801', lat: 40.7634, lng: -73.5251, phone: '631-851-1100', type: 'branch' },
                 { id: 'massapequa', name: 'Massapequa', address: '824 Hicksville Road, Massapequa, NY 11758', lat: 40.6807, lng: -73.4687, phone: '631-851-1100', type: 'branch' },
