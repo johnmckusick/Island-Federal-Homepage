@@ -1268,9 +1268,9 @@
             background-position: 70% center;
         }
 
-        /* Auto: anchor higher in frame so faces stay in view */
+        /* Auto: full JPG shows couple + car; Y% favors upper frame so heads aren’t clipped */
         .hero-bg[data-hero-bg="1"] {
-            background-position: 54% 18%;
+            background-position: 52% 26%;
         }
 
         .hero-bg[data-hero-bg="2"] {
@@ -1283,7 +1283,7 @@
             }
 
             .hero-bg[data-hero-bg="1"] {
-                background-position: 50% 12%;
+                background-position: 50% 22%;
             }
 
             .hero-bg[data-hero-bg="2"] {
@@ -1375,7 +1375,7 @@
             width: auto;
             max-width: 100%;
             min-width: 0;
-            gap: 14px;
+            gap: 8px;
             flex-shrink: 0;
             margin: 0;
             padding: 4px 0;
@@ -1384,7 +1384,7 @@
 
         .hero-progress {
             display: flex;
-            gap: 8px;
+            gap: 4px;
             align-items: center;
             justify-content: flex-start;
             flex-shrink: 0;
@@ -1395,7 +1395,7 @@
         .hero-nav-arrows {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
         }
 
@@ -1434,7 +1434,7 @@
         }
 
         .hero-bullet {
-            min-width: 28px;
+            min-width: 22px;
             height: 40px;
             display: inline-flex;
             align-items: center;
@@ -1442,7 +1442,7 @@
             border: none;
             background: transparent;
             cursor: pointer;
-            padding: 0 3px;
+            padding: 0 1px;
             border-radius: 999px;
             transition: opacity 0.2s ease;
         }
@@ -1496,7 +1496,7 @@
 
         /* Solid white pill when selected; ::after adds timed sweep on top */
         .hero-bullet.is-active .hero-bullet-dot {
-            width: 28px;
+            width: 24px;
             height: 6px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.95);
@@ -2463,7 +2463,7 @@
 
         .member-spotlight-track {
             display: flex;
-            gap: 14px;
+            gap: 8px;
             transition: transform 0.6s ease-in-out;
         }
 
@@ -2472,7 +2472,7 @@
             min-width: 0;
             display: grid;
             grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-            gap: 48px;
+            gap: 36px;
             align-items: center;
             padding: 0;
         }
@@ -2485,7 +2485,8 @@
 
         .member-spotlight-content {
             min-width: 0;
-            max-width: 49%;
+            width: 100%;
+            max-width: none;
         }
 
         .member-spotlight-image img {
@@ -2516,6 +2517,7 @@
             color: var(--navy-text);
             line-height: 1.55;
             margin-bottom: 28px;
+            max-width: min(38rem, 100%);
         }
 
         .member-spotlight-author {
@@ -3609,7 +3611,7 @@
             .hero-headline { font-size: 42px; }
             .hero-content { max-width: 100%; padding: 0; }
             .hero-description { font-size: 16px; }
-            .hero-progress { gap: 7px; }
+            .hero-progress { gap: 4px; }
             .hero-cta-group { flex-direction: column; align-items: flex-start; }
             .btn-primary, .btn-secondary { width: auto; min-width: 200px; justify-content: center; }
             
@@ -3769,7 +3771,7 @@
             .hero-headline { font-size: 34px; line-height: 1.2; }
             .hero-badge { font-size: 12px; padding: 6px 12px; }
             .hero-description { font-size: 15px; margin-bottom: 32px; max-width: 100%; }
-            .hero-progress { gap: 7px; }
+            .hero-progress { gap: 4px; }
             .hero-cta-group { flex-direction: column; gap: 12px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 15px; width: 100%; max-width: 280px; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
             
@@ -4085,9 +4087,9 @@
             .hero-content { padding: 0; }
             .hero-cta-group { gap: 12px; }
             .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
-            .hero-bullet { min-width: 28px; height: 36px; padding: 0 3px; }
+            .hero-bullet { min-width: 20px; height: 36px; padding: 0 1px; }
             .hero-bullet-dot { width: 6px; height: 6px; }
-            .hero-bullet.is-active .hero-bullet-dot { width: 24px; height: 5px; }
+            .hero-bullet.is-active .hero-bullet-dot { width: 22px; height: 5px; }
             .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
             
             /* Quick Access Rates: keep horizontal scroll (inherit 768); tighten */
@@ -4709,7 +4711,7 @@
     <section class="hero-section" id="heroSlider" aria-roledescription="carousel" aria-label="Featured products and offers">
         <div class="hero-backgrounds" aria-hidden="true">
             <div class="hero-bg is-active" data-hero-bg="0" style="background-image: url('images/hero/hero-mortgage.jpg');"></div>
-            <div class="hero-bg" data-hero-bg="1" style="background-image: url('images/hero/hero-auto.png');"></div>
+            <div class="hero-bg" data-hero-bg="1" style="background-image: url('images/hero/hero-auto.jpg');"></div>
             <div class="hero-bg" data-hero-bg="2" style="background-image: url('images/hero/hero-savings.jpg');"></div>
         </div>
         <div class="container-wide hero-inner">
@@ -5862,7 +5864,7 @@
             let currentSlide = 0;
             const totalSlides = 3;
             const peekMq = window.matchMedia('(min-width: 1025px)');
-            const trackGap = 14;
+            const trackGap = 8;
 
             // Touch variables
             let touchStartX = 0;
@@ -5874,7 +5876,7 @@
                 const carousel = track.parentElement;
                 if (!carousel) return;
                 const w = carousel.clientWidth;
-                const peek = peekMq.matches ? 168 : 0;
+                const peek = peekMq.matches ? 56 : 0;
                 const slideW = Math.max(0, w - peek);
                 track.querySelectorAll('.member-spotlight-slide').forEach(function (slide) {
                     slide.style.flex = '0 0 ' + slideW + 'px';
@@ -5887,7 +5889,7 @@
                 const carousel = track && track.parentElement;
                 if (!carousel || !track) return;
                 const w = carousel.clientWidth;
-                const peek = peekMq.matches ? 168 : 0;
+                const peek = peekMq.matches ? 56 : 0;
                 const slideW = Math.max(0, w - peek);
                 var offset = currentSlide * (slideW + trackGap);
                 track.style.transform = 'translateX(-' + offset + 'px)';
